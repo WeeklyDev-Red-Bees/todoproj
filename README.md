@@ -63,7 +63,7 @@ http://weeklydev.io/ ([/r/webdev](https://www.reddit.com/r/webdev)) Project 1 Su
 ## Stack
 
 * [Bootstrap](http://getbootstrap.com/)
-* [EJS](http://www.embeddedjs.com/)
+* [EJS](http://ejs.co/)
 * [Express](http://expressjs.com/)
 * [Firebase](https://firebase.google.com/)
 * [jQuery](https://jquery.com/)
