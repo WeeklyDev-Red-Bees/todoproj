@@ -34,19 +34,21 @@ http://weeklydev.io/ ([/r/webdev](https://www.reddit.com/r/webdev)) Project 1 Su
 
 1. Install [nodejs](https://nodejs.org/)
 
-1. Install modules from package.json  
+1. Go to project folder in console
+
+1. Install modules from package.json
 
     ```
     npm install
     ```
 
-1. Install *nodemon* globally  
+1. Install *nodemon* globally
 
     ```
     npm install -g nodemon
     ```
 
-1. Run nodemon in the project root  
+1. Run nodemon in the project root
 
     ```
     nodemon
