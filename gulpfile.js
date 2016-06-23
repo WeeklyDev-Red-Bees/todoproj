@@ -25,13 +25,12 @@ var dist = 'public/',
 	srcFonts = src + 'fonts/*',
 	srcImages = src + 'img/**/*',
 	srcJs = src + 'js/*.js',
-	srcJsVendor = src + 'js/vendor/*.js',
 	srcStyle = src + 'scss/**/*.scss',
 	srcTemplates = src + 'templates/**/*';
 
 
 // browser-sync server
-gulp.task('serve', ['deleteDist', 'fonts', 'images', 'js', 'nodemon', 'sass', 'templates', 'vendor'], function() {
+gulp.task('serve', ['deleteDist', 'fonts', 'images', 'js', 'nodemon', 'sass', 'templates'], function() {
 
 	browserSync.init({
 		// using proxy to connect with gulp-nodemon
@@ -43,7 +42,6 @@ gulp.task('serve', ['deleteDist', 'fonts', 'images', 'js', 'nodemon', 'sass', 't
 	gulp.watch(srcFonts, ['fonts']);
 	gulp.watch(srcImages, ['images']);
 	gulp.watch(srcJs, ['js']);
-	gulp.watch(srcJsVendor, ['vendor']);
 	gulp.watch(srcStyle, ['sass']);
 	gulp.watch(srcTemplates, ['templates']);
 
@@ -113,17 +111,6 @@ gulp.task('sass', function() {
 gulp.task('js', function() {
 	return gulp.src(srcJs)
 		.pipe(concat('scripts.js'))
-		// .pipe(uglify()
-		//     .pipe(plumber())
-		.pipe(gulp.dest(distJs));
-});
-
-// concatenate & minify vendor js
-gulp.task('vendor', function() {
-	return gulp.src(srcJsVendor)
-		.pipe(concat('vendor.js'))
-		// .pipe(uglify()
-		//     .pipe(plumber())
 		.pipe(gulp.dest(distJs));
 });
 
