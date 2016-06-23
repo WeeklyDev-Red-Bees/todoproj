@@ -1,9 +1,32 @@
 @import "/bower_components/bootstrap/dist/css/bootstrap.min.css";
 @import "bower_components/compass-sass-mixins/lib/compass";
 
-body {
-	background-color: #004377; // Old browsers
-	@include filter-gradient(#eac300, #004377, horizontal); // IE6-9 fallback on horizontal gradient
-	@include background-image(linear-gradient(left top, #eac300 0%,#5b0072 50%,#004377 100%));
+
+/*TYPOGRAPHY*/
+h1 {
+	color:#fff;
 }
+p {
+	color:#fff;
+}
+
+body {
+	height:100vh;
+	color:#fff;
+	background-color: #004377; 
+	@include filter-gradient(#eac300, #004377, horizontal);
+	@include background-image(linear-gradient(left top, #eac300 0%,#5b0072 50%,#004377 100%));
+	background: -moz-linear-gradient(-45deg, #eac300 0%, #5b0072 50%, #004377 99%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(-45deg, #eac300 0%,#5b0072 50%,#004377 99%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(135deg, #eac300 0%,#5b0072 50%,#004377 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eac300', endColorstr='#004377',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	section {
+		padding:80px 0;
+		.content {
+			background:rgba(0,0,0,.3);
+			padding:30px;
+		}
+	}
+}
+
 
