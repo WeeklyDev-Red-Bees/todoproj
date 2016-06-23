@@ -1,7 +1,7 @@
-// Include gulp
+// include gulp
 var gulp = require('gulp');
 
-// Include plugins
+// include plugins
 var autoprefixer = require('gulp-autoprefixer'),
 	browserSync = require('browser-sync').create(),
 	concat = require('gulp-concat'),
@@ -14,7 +14,7 @@ var autoprefixer = require('gulp-autoprefixer'),
 	sass = require('gulp-sass'),
 	uglify = require('gulp-uglify');
 
-// Folders
+// folders
 var dist = 'public/',
 	distFonts = dist + 'fonts/',
 	distImages = dist + 'img/',
@@ -30,10 +30,11 @@ var dist = 'public/',
 	srcTemplates = src + 'templates/**/*';
 
 
-// Browser-sync server
+// browser-sync server
 gulp.task('serve', ['deleteDist', 'fonts', 'images', 'js', 'nodemon', 'sass', 'templates', 'vendor'], function() {
 
 	browserSync.init({
+		// using proxy to connect with gulp-nodemon
 		proxy: 'http://localhost:3000',
 		port: 4000,
 		open: false
@@ -63,37 +64,37 @@ gulp.task('nodemon', function(cb) {
 	});
 });
 
-// Delete dist
+// delete dist
 gulp.task('deleteDist', function() {
 	return del.sync(dist);
 })
 
-// Copy fonts
+// copy fonts
 gulp.task('fonts', function() {
 	return gulp.src(srcFonts)
 		.pipe(gulp.dest(distFonts));
 });
 
-// Copy images
+// copy images
 gulp.task('images', function() {
 	return gulp.src(srcImages)
 		.pipe(imagemin())
 		.pipe(gulp.dest(distImages));
 });
-// Copy templates
+// copy templates
 gulp.task('templates', function() {
 	return gulp.src(srcTemplates)
 		.pipe(gulp.dest(distTemplates));
 });
 
-// Lint Task
+// js lint task
 gulp.task('lint', function() {
 	return gulp.src(srcJs)
 		.pipe(jshint())
 		.pipe(jshint.reporter('default'));
 });
 
-// Compile sass
+// compile sass
 gulp.task('sass', function() {
 	return gulp.src(srcStyle)
 		.pipe(sass({
@@ -108,7 +109,7 @@ gulp.task('sass', function() {
 		.pipe(gulp.dest(distStyle));
 });
 
-// Concatenate & Minify JS
+// concatenate & minify js
 gulp.task('js', function() {
 	return gulp.src(srcJs)
 		.pipe(concat('scripts.js'))
@@ -117,7 +118,7 @@ gulp.task('js', function() {
 		.pipe(gulp.dest(distJs));
 });
 
-// Concatenate & Minify vendor JS
+// concatenate & minify vendor js
 gulp.task('vendor', function() {
 	return gulp.src(srcJsVendor)
 		.pipe(concat('vendor.js'))
@@ -126,5 +127,5 @@ gulp.task('vendor', function() {
 		.pipe(gulp.dest(distJs));
 });
 
-// Default Task
+// default task
 gulp.task('default', ['serve']);
