@@ -1,2 +1,8 @@
 @import 'vendor/bootstrap.min.css';
 
+body {
+	background-color: #eac300; // Old browsers
+	@include filter-gradient(#eac300, #004377, horizontal); // IE6-9 fallback on horizontal gradient
+	@include background-image(linear-gradient(left top, #eac300 0%,#5b0072 50%,#004377 100%));
+}
+
