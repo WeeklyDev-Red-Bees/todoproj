@@ -54,6 +54,12 @@ http://weeklydev.io/ ([/r/webdev](https://www.reddit.com/r/webdev)) Project 1 Su
     nodemon
     ```
 
+1. Open another console and go to project folder to run gulp
+
+    ```
+    gulp
+    ```
+
 1. Access [http://localhost:3000](http://localhost:3000)
 
 ## Resources
