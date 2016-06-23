@@ -32,6 +32,8 @@ http://weeklydev.io/ ([/r/webdev](https://www.reddit.com/r/webdev)) Project 1 Su
 
 ## Setup guide
 
+### Install package.json, run server and gulp
+
 1. Install [nodejs](https://nodejs.org/)
 
 1. Go to project folder in console
@@ -54,7 +56,27 @@ http://weeklydev.io/ ([/r/webdev](https://www.reddit.com/r/webdev)) Project 1 Su
     nodemon
     ```
 
+1. Open another console and go to project folder to run gulp
+
+    ```
+    gulp
+    ```
+
 1. Access [http://localhost:3000](http://localhost:3000)
+
+### Install bower.json
+
+1. Install [bower](https://bower.io/) globally
+
+    ```
+    npm install -g bower
+    ```
+
+1. Install bower packages from bower.json
+
+    ```
+    bower install
+    ```
 
 ## Resources
 
@@ -68,5 +90,3 @@ http://weeklydev.io/ ([/r/webdev](https://www.reddit.com/r/webdev)) Project 1 Su
 * [Firebase](https://firebase.google.com/)
 * [jQuery](https://jquery.com/)
 * [Socket.io](http://socket.io/)
-
-
