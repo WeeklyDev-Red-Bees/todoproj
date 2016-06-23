@@ -5,6 +5,7 @@ var gulp = require("gulp");
 var autoprefixer = require('gulp-autoprefixer'),
   concat = require("gulp-concat"),
   del = require('del'),
+  imagemin = require('gulp-imagemin'),
   jshint = require("gulp-jshint"),
   plumber = require("gulp-plumber"),
   rename = require("gulp-rename"),
@@ -52,6 +53,7 @@ gulp.task("fonts", function() {
 // Copy images
 gulp.task("images", function() {
   return gulp.src(srcImages)
+	.pipe(imagemin())
     .pipe(gulp.dest(distImages));
 });
 // Copy templates
