@@ -44,6 +44,12 @@ http://weeklydev.io/ ([/r/webdev](https://www.reddit.com/r/webdev)) Project 1 Su
 	npm install
 	```
 
+1. Install gulp globally
+
+	```
+	npm install gulp -g
+	```
+
 1. Run gulp to watch all file changes (uses browser-sync to watch css/js/html and gulp-nodemon to watch server files changes)
 
 	```
