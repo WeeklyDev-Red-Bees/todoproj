@@ -7,8 +7,28 @@
   <body>
 		<section class="main">
 			<div class="container">
-				<h1><%= title %></h1>
-				<p>Welcome to the <%= title %></p>
+				<div class="row">
+					<div class="col-xs-12">
+						<h1><%= title %></h1>
+						<p>Welcome to the <%= title %></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-5 col-sm-offset-2">
+						<div class="content">
+							<div class="signup">
+							</div>
+							<div class="login">
+								<h2>Login with:</h2>
+								<div class="social">
+									<button class="btn facebook"><i class icon-facebook></i> Facebook</button>
+									<button class="btn twitter"><i class icon-twitter></i> Twitter</button>
+									<button class="btn gplus"><i class icon-gplus></i> Google +</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</section>
     <% include ./partials/footer %>
