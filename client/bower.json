@@ -1,0 +1,44 @@
+{
+  "name": "todoproj",
+  "description": "",
+  "main": "",
+  "authors": [
+    {
+      "name": "Jorge D",
+      "email": "jorge.lawl@gmail.com"
+    },
+    {
+      "name": "Jacob J",
+      "email": "jacob.jime@gmail.com"
+    },
+    {
+      "name": "Russell Hueske",
+      "email": "hueske.rus690@gmail.com"
+    },
+    {
+      "name": "Lynn Stahl",
+      "email": "msbtterswrth@gmail.com"
+    },
+    {
+      "name": "Vlad Rusanescu",
+      "email": "vlad.rusanescu@gmail.com"
+    }
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/WeeklyDev-Red-Bees/todoproj",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "jquery": "^3.0.0",
+    "angular": "^1.5.7",
+    "angular-ui-router": "^0.3.1",
+    "angular-resource": "^1.5.7"
+  }
+}

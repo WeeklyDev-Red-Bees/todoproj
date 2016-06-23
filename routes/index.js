@@ -8,7 +8,8 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'ToDoList for the Red Bees' });
+  // res.render('index', { title: 'ToDoList for the Red Bees' });
+  res.sendFile(path.join(__dirname, '..', 'client', 'dist', 'index.html'));
 });
 
 router.use('/users', users);
