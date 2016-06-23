@@ -1,8 +1,9 @@
-@import 'vendor/bootstrap.min.css';
+@import "/bower_components/bootstrap/dist/css/bootstrap.min.css";
+@import "bower_components/compass-sass-mixins/lib/compass";
 
 body {
-	background-color: #eac300; // Old browsers
-	// @include filter-gradient(#eac300, #004377, horizontal); // IE6-9 fallback on horizontal gradient
+	background-color: #004377; // Old browsers
+	@include filter-gradient(#eac300, #004377, horizontal); // IE6-9 fallback on horizontal gradient
 	@include background-image(linear-gradient(left top, #eac300 0%,#5b0072 50%,#004377 100%));
 }
 
