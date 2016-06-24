@@ -1,8 +1,9 @@
 @import "/bower_components/bootstrap/dist/css/bootstrap.min.css";
 @import "bower_components/compass-sass-mixins/lib/compass";
-/*@import "bower_components/awesome-bootstrap-checkbox";
-@import "/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss";
-@import "/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_mixins.scss";*/
+@import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss";
+@import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_mixins.scss";
+@import "bower_components/font-awesome/scss/_variables.scss";
+@import "bower_components/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.scss";
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600|Raleway:400,300,700,900);
 
 /*MIXINS*/
@@ -15,7 +16,7 @@
 }
 
 @mixin breakpoint($point){
-  
+
   @if ($point == xxl){
     @media (min-width: 1600px){ @content }
   }
@@ -28,7 +29,7 @@
   @else if ($point == md){
     @media (min-width: 992px) and (max-width: 1199px){ @content }
   }
-  
+
   @else if ($point == sm){
     @media (max-width: 991px){ @content }
   }
@@ -40,12 +41,12 @@
   @else if ($point == xxs){
     @media  (max-width: 480px){ @content }
   }
-  
+
 }
 
 /*COLORS*/
 $red: #F44336;
-$yellow:#ffee58; 
+$yellow:#ffee58;
 $orange:#fb8c00;
 $green: #009688;
 $blue:#2196f3;
@@ -195,7 +196,7 @@ body {
 	height:100vh;
 	color:#fff;
 	font-family: 'Open Sans', sans-serif;
-	background-color: #2b2d42; 
+	background-color: #2b2d42;
 	@include filter-gradient(#2b2d42, #edf2f4, horizontal);
 	@include background-image(linear-gradient(to bottom right, #2b2d42 0%,#8d99ae 50%,#edf2f4 100%));
 	section {
@@ -232,7 +233,7 @@ body {
 						position: absolute;
 						right: 0;
 						top: 0;
-						width: 10px;						
+						width: 10px;
 					}
 					&.red {
 						&::before {
@@ -267,7 +268,7 @@ body {
 					> div {
 						float:left;
 						&.check {
-							width:50px; 
+							width:50px;
 							.checkbox {
 								margin:0;
 							}
