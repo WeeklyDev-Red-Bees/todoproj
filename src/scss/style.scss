@@ -2,7 +2,6 @@
 @import "bower_components/compass-sass-mixins/lib/compass";
 @import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss";
 @import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_mixins.scss";
-@import "bower_components/font-awesome/scss/_variables.scss";
 @import "bower_components/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.scss";
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600|Raleway:400,300,700,900);
 
@@ -60,11 +59,11 @@ $lt-gray:#EDF2F4;
 $font-family-icon: 'redbees';
 @font-face {
     font-family: 'redbees';
-    src:    url('../fonts/redbees.eot?irvaze');
-    src:    url('../fonts/redbees.eot?irvaze#iefix') format('embedded-opentype'),
-        url('../fonts/redbees.ttf?irvaze') format('truetype'),
-        url('../fonts/redbees.woff?irvaze') format('woff'),
-        url('../fonts/redbees.svg?irvaze#redbees') format('svg');
+    src:    url('../fonts/redbees.eot?suemw');
+    src:    url('../fonts/redbees.eot?suemw#iefix') format('embedded-opentype'),
+        url('../fonts/redbees.ttf?suemw') format('truetype'),
+        url('../fonts/redbees.woff?suemw') format('woff'),
+        url('../fonts/redbees.svg?suemw#redbees') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -83,7 +82,12 @@ $font-family-icon: 'redbees';
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
+.icon-plus:before {
+    content: "\f067";
+}
+.icon-minus:before {
+    content: "\f068";
+}
 .icon-star:before {
     content: "\f005";
 }
@@ -221,11 +225,20 @@ body {
 					}
 				}
 			}
+			.ui-panel {
+				background:darken($dk-gray, 5%);
+				border-bottom:1px solid $gray;
+				padding:10px;
+				text-align:right;
+				i {
+					padding:10px;
+					font-size:22px;
+				}
+			}
 			.task-list {
 				background:$dk-gray;
 				.task {
 					position:relative;
-					padding:30px;
 					&::before {
 						content: "";
 						display: block;
@@ -266,28 +279,43 @@ body {
 						}
 					}
 					> div {
-						float:left;
+						display:table-cell;
+						padding:10px;
 						&.check {
-							width:50px;
+							background:darken($dk-gray, 5%);
+							vertical-align:middle;
+							padding:10px 20px;
 							.checkbox {
 								margin:0;
+								label {
+									padding:0;
+									&::before {
+										border:none;
+									}
+									&::after {
+										color:$green;
+									}
+								}
 							}
 						}
 						&.info {
 							overflow:hidden;
+							cursor:pointer;
 							.title {
-								font-size:32px;
+								font-size:24px;
 								text-transform:uppercase;
 								font-weight:200;
 								font-family:'Raleway', sans-serif;
 							}
 							.desc {
 								max-height:0;
-								@include transition(max-height .3s linear);
+								transform:translate(0,20px);
+								@include transition(max-height 0.3s linear 0s, transform 0.3s linear 0s);
 							}
 							&:hover {
 								.desc {
 									max-height:4em;
+									transform:translate(0)
 								}
 							}
 						}
