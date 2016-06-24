@@ -1,5 +1,8 @@
 @import "/bower_components/bootstrap/dist/css/bootstrap.min.css";
 @import "bower_components/compass-sass-mixins/lib/compass";
+/*@import "bower_components/awesome-bootstrap-checkbox";
+@import "/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss";
+@import "/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_mixins.scss";*/
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600|Raleway:400,300,700,900);
 
 /*MIXINS*/
@@ -52,13 +55,15 @@ $gray:#8D99AE;
 $lt-gray:#EDF2F4;
 
 /*TYPOGRAPHY*/
+
+$font-family-icon: 'redbees';
 @font-face {
     font-family: 'redbees';
-    src:    url('fonts/redbees.eot?irvaze');
-    src:    url('fonts/redbees.eot?irvaze#iefix') format('embedded-opentype'),
-        url('fonts/redbees.ttf?irvaze') format('truetype'),
-        url('fonts/redbees.woff?irvaze') format('woff'),
-        url('fonts/redbees.svg?irvaze#redbees') format('svg');
+    src:    url('../fonts/redbees.eot?irvaze');
+    src:    url('../fonts/redbees.eot?irvaze#iefix') format('embedded-opentype'),
+        url('../fonts/redbees.ttf?irvaze') format('truetype'),
+        url('../fonts/redbees.woff?irvaze') format('woff'),
+        url('../fonts/redbees.svg?irvaze#redbees') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -150,6 +155,11 @@ strong {
 .btn {
 	cursor:pointer;
 	@include transition(background .3s linear);
+	i {
+		float:left;
+		margin-right:10px;
+		margin-top:2px;
+	}
 	&.facebook {
 		background:#3b5998;
 		&:hover {
@@ -207,6 +217,79 @@ body {
 				.signup {
 					h2 {
 						margin-top:0;
+					}
+				}
+			}
+			.task-list {
+				background:$dk-gray;
+				.task {
+					position:relative;
+					padding:30px;
+					&::before {
+						content: "";
+						display: block;
+						height: 100%;
+						position: absolute;
+						right: 0;
+						top: 0;
+						width: 10px;						
+					}
+					&.red {
+						&::before {
+							background:$red;
+						}
+					}
+					&.orange {
+						&::before {
+							background:$orange;
+						}
+					}
+					&.yellow {
+						&::before {
+							background:$yellow;
+						}
+					}
+					&.blue {
+						&::before {
+							background:$blue;
+						}
+					}
+					&.green {
+						&::before {
+							background:$green;
+						}
+					}
+					&.purple {
+						&::before {
+							background:$purple;
+						}
+					}
+					> div {
+						float:left;
+						&.check {
+							width:50px; 
+							.checkbox {
+								margin:0;
+							}
+						}
+						&.info {
+							overflow:hidden;
+							.title {
+								font-size:32px;
+								text-transform:uppercase;
+								font-weight:200;
+								font-family:'Raleway', sans-serif;
+							}
+							.desc {
+								max-height:0;
+								@include transition(max-height .3s linear);
+							}
+							&:hover {
+								.desc {
+									max-height:4em;
+								}
+							}
+						}
 					}
 				}
 			}
