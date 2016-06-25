@@ -47,9 +47,10 @@
 							<div class="ui-panel">
 								<i class="icon-plus"></i><i class="icon-gear"></i>
 							</div>
+							<ul>
 							<% var arr = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
 								for (var i = 0; i < arr.length; i++) { %>
-								<div class="task <%= arr[i] %> clearfix">
+								<li class="task <%= arr[i] %> clearfix">
 									<div class="check">
 										<div class="checkbox checkbox-circle">
 											<input type="checkbox" id="checkbox<%= i+1 %>">
@@ -64,8 +65,9 @@
 											Ticket #24, at Al's Drycleaning. Ticket #24, at Al's Drycleaning. Ticket #24, at Al's Drycleaning. Ticket #24, at Al's Drycleaning.
 										</div>
 									</div>
-								</div>
+								</li>
 							<% } %>
+							</ul>
 						</div>
 					</div>
 				</div>
