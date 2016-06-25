@@ -28,11 +28,24 @@ var dist = 'public/',
 	srcStyle = src + 'scss/**/*.scss',
 	srcTemplates = src + 'templates/**/*';
 
+// default task
+gulp.task('default', ['watch', 'browser-sync']);
+
+// watch files
+gulp.task('watch', ['deleteDist', 'fonts', 'img', 'js', 'css', 'templates'], function() {
+	gulp.watch(srcFonts, ['fonts']);
+	gulp.watch(srcImages, ['img']);
+	gulp.watch(srcJs, ['js']);
+	gulp.watch(srcStyle, ['css']);
+	gulp.watch(srcTemplates, ['templates']);
+	gulp.watch('views/**/*.ejs').on('change', browserSync.reload);
+});
+
 // browser-sync server
-gulp.task('serve', ['deleteDist', 'fonts', 'images', 'js', 'nodemon', 'sass', 'templates'], function() {
+gulp.task('browser-sync', ['nodemon'], function() {
 
 	browserSync.init({
-		// proxy to connect to nodemon server
+		// proxy to nodemon server
 		proxy: 'localhost:4000',
 		// port to access in browser
 		port: 3000,
@@ -40,37 +53,32 @@ gulp.task('serve', ['deleteDist', 'fonts', 'images', 'js', 'nodemon', 'sass', 't
 		open: false
 	});
 
-	gulp.watch(srcFonts, ['fonts']);
-	gulp.watch(srcImages, ['images']);
-	gulp.watch(srcJs, ['js']);
-	gulp.watch(srcStyle, ['sass']);
-	gulp.watch(srcTemplates, ['templates']);
-
 });
 
 var BROWSER_SYNC_RELOAD_DELAY = 500;
-// nodemon
+// nodemon server
 gulp.task('nodemon', function(cb) {
 
-	var started = false;
+	var called = false;
 
 	return nodemon({
-		script: 'bin/www'
-	})
-	.on('start', function() {
-		if (!started) {
-			started = true;
-			cb();
-		}
-	})
-	.on('restart', function() {
-		// reload connected browsers after a slight delay
-		setTimeout(function() {
-			browserSync.reload({
-				stream: false
-			});
-		}, BROWSER_SYNC_RELOAD_DELAY);
-	});
+			script: 'bin/www',
+			watch: ['/bin/', '/routes/', '/views/', 'app.js']
+		})
+		.on('start', function onStart() {
+			if (!called) {
+				cb();
+			}
+			called = true;
+		})
+		.on('restart', function onRestart() {
+			// reload connected browsers after a slight delay
+			setTimeout(function reload() {
+				browserSync.reload({
+					stream: false
+				});
+			}, BROWSER_SYNC_RELOAD_DELAY);
+		});
 
 });
 
@@ -87,7 +95,7 @@ gulp.task('fonts', function() {
 });
 
 // copy images
-gulp.task('images', function() {
+gulp.task('img', function() {
 	return gulp.src(srcImages)
 		.pipe(imagemin())
 		.pipe(gulp.dest(distImages))
@@ -108,7 +116,7 @@ gulp.task('lint', function() {
 });
 
 // compile sass
-gulp.task('sass', function() {
+gulp.task('css', function() {
 	return gulp.src(srcStyle)
 		.pipe(sass({
 			outputStyle: 'compressed'
@@ -130,6 +138,3 @@ gulp.task('js', function() {
 		.pipe(gulp.dest(distJs))
 		.pipe(browserSync.stream());
 });
-
-// default task
-gulp.task('default', ['serve']);
