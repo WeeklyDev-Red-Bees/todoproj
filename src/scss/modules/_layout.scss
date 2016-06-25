@@ -1,7 +1,7 @@
 body {
 	height: 100vh;
 	color: #fff;
-	font-family: 'Open Sans', sans-serif;
+	font-family: $font-family-default;
 	background-color: #2b2d42;
 	@include filter-gradient(#2b2d42,
 	#edf2f4,
