@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { LoginComponent } from '../login';
 import { SignupComponent } from '../signup';
 
@@ -9,27 +9,33 @@ import { SignupComponent } from '../signup';
   template: require('./home.html')
 })
 export class Home {
-  constructor() {
-    this.tasks = [];
+  
+  tasks = [];
+  
+  constructor(@Inject('TASKS') tasks) {
+    this.tasks = tasks;
+    // let colors = [
+    //   'red',
+    //   'orange',
+    //   'yellow',
+    //   'green',
+    //   'blue',
+    //   'purple'
+    // ];
+    // this.tasks = colors.map((v) => {
+    //   return {
+    //     title: 'Pick up Dry Cleaning',
+    //     desc: "Ticket #24, at Al's Drycleaning.",
+    //     color: v,
+    //     completed: false
+    //   }
+    // });
+    
+    console.log(this.tasks);
   }
   
-  ngOnInit() {
-    let colors = [
-      'red',
-      'orange',
-      'yellow',
-      'green',
-      'blue',
-      'purple'
-    ];
-    this.tasks = colors.map((v) => {
-      return {
-        title: 'Pick up Dry Cleaning',
-        desc: "Ticket #24, at Al's Drycleaning.",
-        color: v,
-        completed: false
-      }
-    });
+  getTasks() {
+    return this.tasks;
   }
   
   setChecked(idx) {
