@@ -1,109 +1,22 @@
 /*TYPOGRAPHY*/
 
-@font-face {
-	font-family: $font-family-icon;
-	src: url('../fonts/redbees.eot?suemw');
-	src: url('../fonts/redbees.eot?suemw#iefix') format('embedded-opentype'), url('../fonts/redbees.ttf?suemw') format('truetype'), url('../fonts/redbees.woff?suemw') format('woff'), url('../fonts/redbees.svg?suemw#redbees') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-
-[class^="icon-"],
-[class*="icon-"] {
-	/* use !important to prevent issues with browser extensions that change fonts */
-	font-family: $font-family-icon !important;
-	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
-	/* Better Font Rendering =========== */
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-.icon-plus:before {
-	content: "\f067";
-}
-
-.icon-minus:before {
-	content: "\f068";
-}
-
-.icon-star:before {
-	content: "\f005";
-}
-
-.icon-check:before {
-	content: "\f00c";
-}
-
-.icon-close:before {
-	content: "\f00d";
-}
-
-.icon-gear:before {
-	content: "\f013";
-}
-
-.icon-trash:before {
-	content: "\f014";
-}
-
-.icon-home:before {
-	content: "\f015";
-}
-
-.icon-refresh:before {
-	content: "\f021";
-}
-
-.icon-lock:before {
-	content: "\f023";
-}
-
-.icon-image:before {
-	content: "\f03e";
-}
-
-.icon-twitter:before {
-	content: "\f099";
-}
-
-.icon-facebook:before {
-	content: "\f09a";
-}
-
-.icon-google-plus:before {
-	content: "\f0d5";
-}
-
-.icon-sort:before {
-	content: "\f0dc";
-}
-
-.icon-mail:before {
-	content: "\f0e0";
-}
-
 h1 {
 	color: #fff;
-	font-family: 'Raleway', sans-serif;
+	font-family: $font-family-default;
 	font-weight: 200;
 	font-size: 40px;
 }
 
 h2 {
 	color: #fff;
-	font-family: 'Raleway', sans-serif;
+	font-family: $font-family-default;
 	font-size: 24px;
 	font-weight: 700;
 }
 
 p {
 	color: #fff;
-	font-family: 'Open Sans', sans-serif;
+	font-family: $font-family-default;
 	font-weight: 500;
 	font-size: 16px;
 }
