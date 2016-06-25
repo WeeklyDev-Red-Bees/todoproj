@@ -28,14 +28,15 @@ var dist = 'public/',
 	srcStyle = src + 'scss/**/*.scss',
 	srcTemplates = src + 'templates/**/*';
 
-
 // browser-sync server
 gulp.task('serve', ['deleteDist', 'fonts', 'images', 'js', 'nodemon', 'sass', 'templates'], function() {
 
 	browserSync.init({
-		// using proxy to connect with gulp-nodemon
-		proxy: 'http://localhost:3000',
-		port: 4000,
+		// proxy to connect to nodemon server
+		proxy: 'localhost:4000',
+		// port to access in browser
+		port: 3000,
+		// don't automatically open in browser
 		open: false
 	});
 
@@ -47,6 +48,7 @@ gulp.task('serve', ['deleteDist', 'fonts', 'images', 'js', 'nodemon', 'sass', 't
 
 });
 
+var BROWSER_SYNC_RELOAD_DELAY = 500;
 // nodemon
 gulp.task('nodemon', function(cb) {
 
@@ -54,12 +56,22 @@ gulp.task('nodemon', function(cb) {
 
 	return nodemon({
 		script: 'bin/www'
-	}).on('start', function() {
+	})
+	.on('start', function() {
 		if (!started) {
-			cb();
 			started = true;
+			cb();
 		}
+	})
+	.on('restart', function() {
+		// reload connected browsers after a slight delay
+		setTimeout(function() {
+			browserSync.reload({
+				stream: false
+			});
+		}, BROWSER_SYNC_RELOAD_DELAY);
 	});
+
 });
 
 // delete dist
@@ -70,19 +82,22 @@ gulp.task('deleteDist', function() {
 // copy fonts
 gulp.task('fonts', function() {
 	return gulp.src(srcFonts)
-		.pipe(gulp.dest(distFonts));
+		.pipe(gulp.dest(distFonts))
+		.pipe(browserSync.stream());
 });
 
 // copy images
 gulp.task('images', function() {
 	return gulp.src(srcImages)
 		.pipe(imagemin())
-		.pipe(gulp.dest(distImages));
+		.pipe(gulp.dest(distImages))
+		.pipe(browserSync.stream());
 });
 // copy templates
 gulp.task('templates', function() {
 	return gulp.src(srcTemplates)
-		.pipe(gulp.dest(distTemplates));
+		.pipe(gulp.dest(distTemplates))
+		.pipe(browserSync.stream());
 });
 
 // js lint task
@@ -104,14 +119,16 @@ gulp.task('sass', function() {
 			cascade: false,
 			flexbox: true,
 		}))
-		.pipe(gulp.dest(distStyle));
+		.pipe(gulp.dest(distStyle))
+		.pipe(browserSync.stream());
 });
 
 // concatenate & minify js
 gulp.task('js', function() {
 	return gulp.src(srcJs)
 		.pipe(concat('scripts.js'))
-		.pipe(gulp.dest(distJs));
+		.pipe(gulp.dest(distJs))
+		.pipe(browserSync.stream());
 });
 
 // default task
