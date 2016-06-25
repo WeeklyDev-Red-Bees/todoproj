@@ -3,13 +3,9 @@ body {
 	color: #fff;
 	font-family: $font-family-default;
 	background-color: #2b2d42;
-	@include filter-gradient(#2b2d42,
-	#edf2f4,
-	horizontal);
-	@include background-image(linear-gradient(to bottom right,
-	#2b2d42 0%,
-	#8d99ae 50%,
-	#edf2f4 100%));
+	background-attachment:fixed;
+	@include filter-gradient(#2b2d42, #edf2f4, horizontal);
+	@include background-image(linear-gradient(to bottom right, #2b2d42 0%,	#8d99ae 50%, #edf2f4 100%));
 	section {
 		padding: 80px 0;
 		&.top {
@@ -34,9 +30,42 @@ body {
 			}
 			.ui-panel {
 				text-align: right;
+				margin:15px 0;
 				i {
 					padding: 10px;
 					font-size: 22px;
+					&.icon-star {
+						&.red {
+							&::before {
+								color: $red;
+							}
+						}
+						&.orange {
+							&::before {
+								color: $orange;
+							}
+						}
+						&.yellow {
+							&::before {
+								color: $yellow;
+							}
+						}
+						&.blue {
+							&::before {
+								color: $blue;
+							}
+						}
+						&.green {
+							&::before {
+								color: $green;
+							}
+						}
+						&.purple {
+							&::before {
+								color: $purple;
+							}
+						}
+					}
 				}
 			}
 			.task-list {
@@ -47,6 +76,9 @@ body {
 					list-style-type: none;
 					.task {
 						position: relative;
+						+ .task {
+							border-top:1px solid darken($dk-gray, 5%);
+						}
 						&::before {
 							content: "";
 							display: block;
@@ -113,18 +145,46 @@ body {
 									font-size: 24px;
 									text-transform: uppercase;
 									font-weight: 200;
-									font-family: 'Raleway', sans-serif;
+									font-family: $font-family-default;
+									&:hover {
+										background: darken($dk-gray, 5%);
+										cursor:text;
+									}
 								}
 								.desc {
 									max-height: 0;
 									transform: translate(0, 20px);
 									@include transition(max-height 0.3s linear 0s,
 									transform 0.3s linear 0s);
+									&:hover {
+										p {
+											background: darken($dk-gray, 5%);
+											cursor:text;
+										}
+									}
 								}
 								&:hover {
 									.desc {
-										max-height: 4em;
+										max-height: 8em;
 										transform: translate(0)
+									}
+								}
+							}
+						}
+						&.done {
+							background:darken($dk-gray, 5%);
+							> div {
+								&.info {
+									.title {
+										font-style:italic;
+										font-weight:100;
+										color:$gray;
+										text-decoration: line-through;
+									}
+									.desc {
+										P {
+											color:$gray;
+										}
 									}
 								}
 							}
