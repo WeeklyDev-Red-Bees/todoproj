@@ -8,6 +8,8 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 var BowerWebpackPlugin = require('bower-webpack-plugin');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
 
+var packJSON = require('./package.json');
+
 var ENV = process.env.npm_lifecycle_event;
 var isTest = ENV === 'test' || ENV === 'test-watch';
 var isProd = ENV === 'build';
@@ -103,8 +105,15 @@ module.exports = function makeWebpackConfig() {
       }),
       
       new CleanWebpackPlugin(['dist']),
+      
+      new webpack.optimize.CommonsChunkPlugin({
+        name: ['polyfills', 'vendor'].reverse()
+      })
     ]
   };
+  
+  // config.entry.vendor = Object.keys(packJSON.dependencies);
+  // Object.keys(packJSON.dependencies).forEach((dep) => console.log(dep));
   
   if (isTest) {
     config.devtool = 'inline-source-map';

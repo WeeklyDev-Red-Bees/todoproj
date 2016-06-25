@@ -1,20 +1,15 @@
-import { Component, Inject } from '@angular/core';
-import { LoginComponent } from '../login';
-import { SignupComponent } from '../signup';
-import { TaskList } from '../task-list';
+import { Component } from '@angular/core';
+import { Task } from '../task';
 
 @Component({
-  selector: 'home',
-  directives: [LoginComponent, SignupComponent, TaskList],
-  styles: [ require('./home.scss') ],
-  template: require('./home.html')
+  selector: 'task-list',
+  directives: [Task],
+  template: require('./task-list.html')
 })
-export class Home {
-  
+export class TaskList {
   tasks = [];
   
   constructor() {
-    // this.tasks = tasks;
     let colors = [
       'red',
       'orange',
@@ -23,16 +18,15 @@ export class Home {
       'blue',
       'purple'
     ];
+    
     this.tasks = colors.map((v) => {
       return {
         title: 'Pick up Dry Cleaning',
         desc: "Ticket #24, at Al's Drycleaning.",
         color: v,
         completed: false
-      }
+      };
     });
-    
-    console.log(this.tasks);
   }
   
   getTasks() {
@@ -42,6 +36,5 @@ export class Home {
   setChecked(idx) {
     let task = this.tasks[idx];
     this.tasks[idx].completed = !task.completed;
-    console.log(this.tasks[idx]);
   }
 }
