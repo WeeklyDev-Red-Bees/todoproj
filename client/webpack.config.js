@@ -29,8 +29,8 @@ module.exports = function makeWebpackConfig() {
     output: {
       path: __dirname + '/dist',
       publicPath: '/',
-      filename: '[name].[hash].bundle.js',
-      chunkFilename: '[name].[hash].bundle.js'
+      filename: '[name].bundle.js',
+      chunkFilename: '[name].bundle.js'
     },
     resolve: {
       root: path.join(__dirname, 'src')

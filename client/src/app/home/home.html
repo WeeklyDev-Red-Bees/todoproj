@@ -1,3 +1,4 @@
+<pre>this.tasks = {{ getTasks() | json }}</pre>
 <section class="main">
   <div class="container">
     <div class="row">
@@ -10,10 +11,10 @@
           <div class="ui-panel">
             <i class="icon-plus"></i><i class="icon-gear"></i>
           </div>
-          <div *ngFor="let task of tasks; let i=index" class="task clearfix {{ task.color }}">
+          <div *ngFor="let task of getTasks()" class="task clearfix {{ task.color }}">
             <div class="check">
               <div class="checkbox checkbox-circle">
-                <input type="checkbox" (click)="setChecked(i)" [value]="task.completed">
+                <input type="checkbox" [value]="task.completed">
                 <label></label>
               </div>
             </div>
