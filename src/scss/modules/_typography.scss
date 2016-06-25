@@ -2,7 +2,7 @@
 
 $font-family-icon: 'redbees';
 @font-face {
-	font-family: 'redbees';
+	font-family: $font-family-icon;
 	src: url('../fonts/redbees.eot?suemw');
 	src: url('../fonts/redbees.eot?suemw#iefix') format('embedded-opentype'), url('../fonts/redbees.ttf?suemw') format('truetype'), url('../fonts/redbees.woff?suemw') format('woff'), url('../fonts/redbees.svg?suemw#redbees') format('svg');
 	font-weight: normal;
@@ -10,9 +10,9 @@ $font-family-icon: 'redbees';
 }
 
 [class^="icon-"],
-[class*=" icon-"] {
+[class*="icon-"] {
 	/* use !important to prevent issues with browser extensions that change fonts */
-	font-family: 'redbees' !important;
+	font-family: $font-family-icon !important;
 	speak: none;
 	font-style: normal;
 	font-weight: normal;

@@ -47,102 +47,25 @@
 							<div class="ui-panel">
 								<i class="icon-plus"></i><i class="icon-gear"></i>
 							</div>
-							<div class="task red clearfix">
-								<div class="check">
-									<div class="checkbox checkbox-circle">
-										<input type="checkbox">
-										<label></label>
+							<% var arr = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
+								for (var i = 0; i < arr.length; i++) { %>
+								<div class="task <%= arr[i] %> clearfix">
+									<div class="check">
+										<div class="checkbox checkbox-circle">
+											<input type="checkbox" id="checkbox<%= i+1 %>">
+											<label for="checkbox<%= i+1 %>"></label>
+										</div>
+									</div>
+									<div class="info">
+										<div class="title">
+											Pick up Dry Cleaning
+										</div>
+										<div class="desc">
+											Ticket #24, at Al's Drycleaning. Ticket #24, at Al's Drycleaning. Ticket #24, at Al's Drycleaning. Ticket #24, at Al's Drycleaning.
+										</div>
 									</div>
 								</div>
-								<div class="info">
-									<div class="title">
-										Pick up Dry Cleaning
-									</div>
-									<div class="desc">
-										Ticket #24, at Al's Drycleaning. Ticket #24, at Al's Drycleaning. Ticket #24, at Al's Drycleaning. Ticket #24, at Al's Drycleaning.
-									</div>
-								</div>
-							</div>
-							<div class="task orange clearfix">
-								<div class="check">
-									<div class="checkbox checkbox-circle">
-										<input type="checkbox">
-										<label></label>
-									</div>
-								</div>
-								<div class="info">
-									<div class="title">
-										Pick up Dry Cleaning
-									</div>
-									<div class="desc">
-										Ticket #24, at Al's Drycleaning.
-									</div>
-								</div>
-							</div>
-							<div class="task yellow clearfix">
-								<div class="check">
-									<div class="checkbox checkbox-circle">
-										<input type="checkbox">
-										<label></label>
-									</div>
-								</div>
-								<div class="info">
-									<div class="title">
-										Pick up Dry Cleaning
-									</div>
-									<div class="desc">
-										Ticket #24, at Al's Drycleaning.
-									</div>
-								</div>
-							</div>
-							<div class="task green clearfix">
-								<div class="check">
-									<div class="checkbox checkbox-circle">
-										<input type="checkbox">
-										<label></label>
-									</div>
-								</div>
-								<div class="info">
-									<div class="title">
-										Pick up Dry Cleaning
-									</div>
-									<div class="desc">
-										Ticket #24, at Al's Drycleaning.
-									</div>
-								</div>
-							</div>
-							<div class="task blue clearfix">
-								<div class="check">
-									<div class="checkbox checkbox-circle">
-										<input type="checkbox">
-										<label></label>
-									</div>
-								</div>
-								<div class="info">
-									<div class="title">
-										Pick up Dry Cleaning
-									</div>
-									<div class="desc">
-										Ticket #24, at Al's Drycleaning.
-									</div>
-								</div>
-							</div>
-							<div class="task purple clearfix">
-								<div class="check">
-									<div class="checkbox checkbox-circle">
-										<input type="checkbox">
-										<label></label>
-									</div>
-								</div>
-								<div class="info">
-									<div class="title">
-										Pick up Dry Cleaning
-									</div>
-									<div class="desc">
-										Ticket #24, at Al's Drycleaning.
-									</div>
-								</div>
-							</div>
+							<% } %>
 						</div>
 					</div>
 				</div>
