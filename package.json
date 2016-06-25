@@ -1,61 +1,62 @@
 {
-	"name": "todoproj",
-	"version": "0.0.0",
-	"private": true,
-	"author": "Red Bees <http://weeklydev.io/the-bees-are-with-us/>",
-	"license": "ISC",
-	"contributors": [
-		{
-			"name": "Jorge D",
-			"email": "jorge.lawl@gmail.com"
-		},
-		{
-			"name": "Jacob J",
-			"email": "jacob.jime@gmail.com"
-		},
-		{
-			"name": "Russell Hueske",
-			"email": "hueske.rus690@gmail.com"
-		},
-		{
-			"name": "Lynn Stahl",
-			"email": "msbtterswrth@gmail.com"
-		},
-		{
-			"name": "Vlad Rusanescu",
-			"email": "vlad.rusanescu@gmail.com"
-		}
-	],
-	"scripts": {
-		"start": "node ./bin/www"
-	},
-	"dependencies": {
-		"body-parser": "~1.13.2",
-		"browser-sync": "^2.13.0",
-		"cookie-parser": "~1.3.5",
-		"debug": "~2.2.0",
-		"express": "~4.13.1",
-		"firebase": "^3.0.5",
-		"mongodb": "^2.1.18",
-		"mongoose": "^4.5.1",
-		"morgan": "~1.6.1",
-		"serve-favicon": "~2.3.0",
-		"socket.io": "^1.4.6"
-	},
-	"devDependencies": {
-		"del": "^2.2.1",
-		"ejs": "~2.3.3",
-		"gulp": "^3.9.1",
-		"gulp-autoprefixer": "^3.1.0",
-		"gulp-concat": "^2.6.0",
-		"gulp-imagemin": "^3.0.1",
-		"gulp-jshint": "^2.0.1",
-		"gulp-nodemon": "^2.1.0",
-		"gulp-plumber": "^1.1.0",
-		"gulp-rename": "^1.2.2",
-		"gulp-sass": "^2.3.2",
-		"gulp-uglify": "^1.5.4",
-		"jshint": "^2.9.2",
-		"node-sass-middleware": "0.8.0"
-	}
+  "name": "todoproj",
+  "version": "0.0.0",
+  "private": true,
+  "author": "Red Bees <http://weeklydev.io/the-bees-are-with-us/>",
+  "license": "ISC",
+  "contributors": [
+    {
+      "name": "Jorge D",
+      "email": "jorge.lawl@gmail.com"
+    },
+    {
+      "name": "Jacob J",
+      "email": "jacob.jime@gmail.com"
+    },
+    {
+      "name": "Russell Hueske",
+      "email": "hueske.rus690@gmail.com"
+    },
+    {
+      "name": "Lynn Stahl",
+      "email": "msbtterswrth@gmail.com"
+    },
+    {
+      "name": "Vlad Rusanescu",
+      "email": "vlad.rusanescu@gmail.com"
+    }
+  ],
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "~1.13.2",
+    "browser-sync": "^2.13.0",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "express": "~4.13.1",
+    "firebase": "^3.0.5",
+    "mongodb": "^2.1.18",
+    "mongoose": "^4.5.1",
+    "morgan": "~1.6.1",
+    "serve-favicon": "~2.3.0",
+    "socket.io": "^1.4.6"
+  },
+  "devDependencies": {
+    "del": "^2.2.1",
+    "ejs": "~2.3.3",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-imagemin": "^3.0.1",
+    "gulp-jshint": "^2.0.1",
+    "gulp-nodemon": "^2.1.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-real-favicon": "^0.2.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-uglify": "^1.5.4",
+    "jshint": "^2.9.2",
+    "node-sass-middleware": "0.8.0"
+  }
 }
