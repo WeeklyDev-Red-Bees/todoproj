@@ -1,12 +1,14 @@
+// to overide bootstrap variables if needed, example in typography
+@import "modules/variables";
+
 @import "/bower_components/bootstrap/dist/css/bootstrap.min.css";
 @import "bower_components/compass-sass-mixins/lib/compass";
-@import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap/variables";
-@import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+@import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap/variables.scss";
+@import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins.scss";
 @import "bower_components/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.scss";
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600|Raleway:400,300,700,900);
 
 @import "modules/mixins";
-@import "modules/colors";
 @import "modules/typography";
 @import "modules/buttons";
 @import "modules/layout";
