@@ -48,90 +48,87 @@ body {
 					margin: 0;
 					padding: 0;
 					list-style-type: none;
-					li {
-						padding: 0;
-					}
-				}
-				.task {
-					position: relative;
-					&::before {
-						content: "";
-						display: block;
-						height: 100%;
-						position: absolute;
-						right: 0;
-						top: 0;
-						width: 10px;
-					}
-					&.red {
+					.task {
+						position: relative;
 						&::before {
-							background: $red;
+							content: "";
+							display: block;
+							height: 100%;
+							position: absolute;
+							right: 0;
+							top: 0;
+							width: 10px;
 						}
-					}
-					&.orange {
-						&::before {
-							background: $orange;
+						&.red {
+							&::before {
+								background: $red;
+							}
 						}
-					}
-					&.yellow {
-						&::before {
-							background: $yellow;
+						&.orange {
+							&::before {
+								background: $orange;
+							}
 						}
-					}
-					&.blue {
-						&::before {
-							background: $blue;
+						&.yellow {
+							&::before {
+								background: $yellow;
+							}
 						}
-					}
-					&.green {
-						&::before {
-							background: $green;
+						&.blue {
+							&::before {
+								background: $blue;
+							}
 						}
-					}
-					&.purple {
-						&::before {
-							background: $purple;
+						&.green {
+							&::before {
+								background: $green;
+							}
 						}
-					}
-					> div {
-						display: table-cell;
-						padding: 10px;
-						&.check {
-							background: darken($dk-gray, 5%);
-							vertical-align: middle;
-							padding: 10px 20px;
-							.checkbox {
-								margin: 0;
-								label {
-									padding: 0;
-									&::before {
-										border: none;
-									}
-									&::after {
-										color: $green;
+						&.purple {
+							&::before {
+								background: $purple;
+							}
+						}
+						> div {
+							display: table-cell;
+							padding: 10px;
+							&.check {
+								background: darken($dk-gray, 5%);
+								vertical-align: middle;
+								padding: 10px 20px;
+								.checkbox {
+									margin: 0;
+									label {
+										padding: 0;
+										&::before {
+											border: none;
+										}
+										&::after {
+											color: $green;
+										}
 									}
 								}
 							}
-						}
-						&.info {
-							overflow: hidden;
-							cursor: pointer;
-							.title {
-								font-size: 24px;
-								text-transform: uppercase;
-								font-weight: 200;
-								font-family: 'Raleway', sans-serif;
-							}
-							.desc {
-								max-height: 0;
-								transform: translate(0, 20px);
-								@include transition(max-height 0.3s linear 0s,
-								transform 0.3s linear 0s);
-							}
-							&:hover {
+							&.info {
+								overflow: hidden;
+								cursor: pointer;
+								.title {
+									font-size: 24px;
+									text-transform: uppercase;
+									font-weight: 200;
+									font-family: 'Raleway', sans-serif;
+								}
 								.desc {
-									max-height: 4em;
-									transform: translate(0)
+									max-height: 0;
+									transform: translate(0, 20px);
+									@include transition(max-height 0.3s linear 0s,
+									transform 0.3s linear 0s);
+								}
+								&:hover {
+									.desc {
+										max-height: 4em;
+										transform: translate(0)
+									}
 								}
 							}
 						}
