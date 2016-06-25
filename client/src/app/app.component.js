@@ -8,11 +8,9 @@ import { Component, ViewEncapsulation } from '@angular/core';
 })
 export class App {
   constructor() {
-    // this.name = 'Red Bees';
-    // this.tempName = '';
   }
   
-  changeName() {
-    // this.name = this.tempName;
+  ngOnInit() {
+    this.title = 'ToDoList for the Red Bees';
   }
 }

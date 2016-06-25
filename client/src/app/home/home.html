@@ -1,17 +1,33 @@
-<div class="row">
-  <div class="col-lg-12">
-    <div class="jumbotron">
-      <h1>Hello {{ name }}</h1>
+<section class="main">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-5 col-sm-offset-3">
+        <div class="content">
+          <signup></signup>
+          <login></login>
+        </div>
+        <div class="task-list">
+          <div class="ui-panel">
+            <i class="icon-plus"></i><i class="icon-gear"></i>
+          </div>
+          <div *ngFor="let task of tasks; let i=index" class="task clearfix {{ task.color }}">
+            <div class="check">
+              <div class="checkbox checkbox-circle">
+                <input type="checkbox" (click)="setChecked(i)" [value]="task.completed">
+                <label></label>
+              </div>
+            </div>
+            <div class="info">
+              <div class="title">
+                {{ task.title }}
+              </div>
+              <div class="desc">
+                {{ task.desc }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-lg-6">
-    <div class="input-group">
-      <input [(ngModel)]="tempName" type="text" class="form-control" placeholder="Your name...">
-      <span class="input-group-btn">
-        <button (click)="changeName()" class="btn btn-primary" type="button">Set Name</button>
-      </span>
-    </div>
-  </div>
-</div>
+</section>
