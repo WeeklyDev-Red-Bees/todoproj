@@ -16,6 +16,14 @@ body {
 			p {
 				text-align: center;
 			}
+			.logo {
+				img {
+					display: block;
+					margin: 0 auto;
+					max-width: 200px;
+					width: 50%;
+				}
+			}
 		}
 		&.main {
 			padding-top: 40px;
