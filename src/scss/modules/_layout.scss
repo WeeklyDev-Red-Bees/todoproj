@@ -156,8 +156,8 @@ body {
 									transform: translate(0, 20px);
 									@include transition(max-height 0.3s linear 0s,
 									transform 0.3s linear 0s);
-									&:hover {
-										p {
+									p {
+										&:hover {
 											background: darken($dk-gray, 5%);
 											cursor:text;
 										}
@@ -182,7 +182,7 @@ body {
 										text-decoration: line-through;
 									}
 									.desc {
-										P {
+										p {
 											color:$gray;
 										}
 									}
