@@ -1,0 +1,47 @@
+/*MIXINS*/
+
+@mixin transition($params...) {
+	-webkit-transition: $params;
+	-moz-transition: $params;
+	-ms-transition: $params;
+	-o-transition: $params;
+	transition: $params;
+}
+
+@mixin breakpoint($point) {
+	@if ($point==xxl) {
+		@media (min-width: 1600px) {
+			@content
+		}
+	}
+	@if ($point==xl) {
+		@media (min-width: 1400px) {
+			@content
+		}
+	}
+	@if ($point==lg) {
+		@media (min-width: 1200px) {
+			@content
+		}
+	}
+	@else if ($point==md) {
+		@media (min-width: 992px) and (max-width: 1199px) {
+			@content
+		}
+	}
+	@else if ($point==sm) {
+		@media (max-width: 991px) {
+			@content
+		}
+	}
+	@else if ($point==xs) {
+		@media (max-width: 767px) {
+			@content
+		}
+	}
+	@else if ($point==xxs) {
+		@media (max-width: 480px) {
+			@content
+		}
+	}
+}

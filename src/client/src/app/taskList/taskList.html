@@ -1,0 +1,6 @@
+<div class="task-list">
+  <div class="ui-panel">
+    <i class="icon-plus"></i><i class="icon-gear"></i>
+  </div>
+  <task *ngFor="let task of tasks let idx=index" [task]="task" [idx]="idx" (onClick)="setChecked($event)"></task>
+</div>
