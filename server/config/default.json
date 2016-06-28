@@ -1,0 +1,10 @@
+{
+  "secrets": {
+    "jwt": "X3QRwH(9m4FY6zA*f[>Ij9sVrh7}3"
+  },
+  "db": {
+    "host": "127.0.0.1",
+    "name": "todoproj",
+    "port": "27017"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "name": "todoproj",
+  "version": "0.0.0",
+  "private": true,
+  "author": "Red Bees <http://weeklydev.io/the-bees-are-with-us/>",
+  "license": "ISC",
+  "contributors": [
+    {
+      "name": "Jorge D",
+      "email": "jorge.lawl@gmail.com"
+    },
+    {
+      "name": "Jacob J",
+      "email": "jacob.jime@gmail.com"
+    },
+    {
+      "name": "Russell Hueske",
+      "email": "hueske.rus690@gmail.com"
+    },
+    {
+      "name": "Lynn Stahl",
+      "email": "msbtterswrth@gmail.com"
+    },
+    {
+      "name": "Vlad Rusanescu",
+      "email": "vlad.rusanescu@gmail.com"
+    }
+  ],
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "bcrypt": "^0.8.7",
+    "body-parser": "~1.13.2",
+    "config": "^1.21.0",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "express": "~4.13.1",
+    "jsonwebtoken": "^7.0.1",
+    "mongodb": "^2.1.18",
+    "morgan": "~1.6.1",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "passport-github": "^1.1.0",
+    "passport-google-oauth": "^1.0.0",
+    "passport-local": "^1.0.0",
+    "passport-twitter": "^1.0.4",
+    "serve-favicon": "~2.3.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^6.1.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-register": "^6.9.0",
+    "browser-sync": "^2.13.0",
+    "del": "^2.2.1",
+    "ejs": "~2.3.3",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-babel": "^6.1.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-eslint": "^2.0.0",
+    "gulp-imagemin": "^3.0.1",
+    "gulp-jshint": "^2.0.1",
+    "gulp-load-plugins": "^1.2.4",
+    "gulp-nodemon": "^2.1.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-real-favicon": "^0.2.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-uglify": "^1.5.4",
+    "jshint": "^2.9.2",
+    "node-sass-middleware": "0.8.0",
+    "run-sequence": "^1.2.1"
+  }
+}
