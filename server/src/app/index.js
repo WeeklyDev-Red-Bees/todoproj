@@ -6,7 +6,6 @@ import logger from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import passport from 'passport';
-import session from 'express-session';
 import config from 'config';
 import bcrypt from 'bcrypt';
 import mongoose from 'mongoose';
