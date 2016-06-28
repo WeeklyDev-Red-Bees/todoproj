@@ -183,11 +183,11 @@ gulp.task('build', ['clean'], (cb) => {
 });
 
 gulp.task('watch', ['clean', 'build'], () => {
-  gulp.watch(paths.src.fonts, ['build:fonts']);
-  gulp.watch(paths.src.images, ['build:img']);
-  gulp.watch(paths.src.js, ['build:js']);
-  gulp.watch(paths.src.style, ['build:css']);
-  gulp.watch(paths.src.templates, ['build:templates']);
+  gulp.watch(paths.fonts.src, ['build:fonts']);
+  gulp.watch(paths.images.src, ['build:img']);
+  gulp.watch(paths.js.src, ['build:js']);
+  gulp.watch(paths.style.src, ['build:css']);
+  gulp.watch(paths.templates.src, ['build:templates']);
 });
 
 gulp.task('nodemon', ['build'], (cb) => {
