@@ -2,8 +2,8 @@
 
 @font-face {
 	font-family: $font-family-icon;
-	src: url('/assets/fonts/redbees.eot?suemw');
-	src: url('/assets/fonts/redbees.eot?suemw#iefix') format('embedded-opentype'), url('/assets/fonts/redbees.ttf?suemw') format('truetype'), url('/assets/fonts/redbees.woff?suemw') format('woff'), url('/assets/fonts/redbees.svg?suemw#redbees') format('svg');
+	src: url('/assets/fonts/redbees.eot?16hffl');
+	src: url('/assets/fonts/redbees.eot?16hffl#iefix') format('embedded-opentype'), url('/assets/fonts/redbees.ttf?16hffl') format('truetype'), url('/assets/fonts/redbees.woff?16hffl') format('woff'), url('/assets/fonts/redbees.svg?16hffl#redbees') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -23,68 +23,59 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.icon-reddit:before {
+    content: "\f281";
+}
+.icon-github:before {
+    content: "\f113";
+}
 .icon-plus:before {
-	content: "\f067";
+    content: "\f067";
 }
-
 .icon-minus:before {
-	content: "\f068";
+    content: "\f068";
 }
-
 .icon-star:before {
-	content: "\f005";
+    content: "\f005";
 }
-
 .icon-check:before {
-	content: "\f00c";
+    content: "\f00c";
 }
-
 .icon-close:before {
-	content: "\f00d";
+    content: "\f00d";
 }
-
 .icon-gear:before {
-	content: "\f013";
+    content: "\f013";
 }
-
 .icon-trash:before {
-	content: "\f014";
+    content: "\f014";
 }
-
 .icon-home:before {
-	content: "\f015";
+    content: "\f015";
 }
-
 .icon-refresh:before {
-	content: "\f021";
+    content: "\f021";
 }
-
 .icon-lock:before {
-	content: "\f023";
+    content: "\f023";
 }
-
 .icon-image:before {
-	content: "\f03e";
+    content: "\f03e";
 }
-
 .icon-twitter:before {
-	content: "\f099";
+    content: "\f099";
 }
-
 .icon-facebook:before {
-	content: "\f09a";
+    content: "\f09a";
 }
-
 .icon-google-plus:before {
-	content: "\f0d5";
+    content: "\f0d5";
 }
-
 .icon-sort:before {
-	content: "\f0dc";
+    content: "\f0dc";
 }
-
 .icon-mail:before {
-	content: "\f0e0";
+    content: "\f0e0";
 }
 
 h1 {
