@@ -7,30 +7,29 @@ import runSeq from 'run-sequence';
 var plugins = gLP();
 
 var paths = {
-  serverJS: {
-	'src': 'src/app/**/*.js',
-	'dist': 'dist/app'
-  }
+	serverJS: {
+		'src': 'src/app/**/*.js',
+		'dist': 'dist/app'
+	}
 };
 
 gulp.task('clean', () => del('dist'));
 
-
 gulp.task('lint:serverJS', () => {
-  return gulp.src([paths.serverJS.src, '!node_modules/**'])
-	.pipe(plugins.eslint())
-	.pipe(plugins.eslint.format())
-	.pipe(plugins.eslint.failAfterError());
+	return gulp.src([paths.serverJS.src, '!node_modules/**'])
+		.pipe(plugins.eslint())
+		.pipe(plugins.eslint.format())
+		.pipe(plugins.eslint.failAfterError());
 });
 
 gulp.task('build:serverJS', ['lint:serverJS'], () => {
-  return gulp.src(paths.serverJS.src)
-	.pipe(plugins.babel())
-	.pipe(gulp.dest(paths.serverJS.dist));
+	return gulp.src(paths.serverJS.src)
+		.pipe(plugins.babel())
+		.pipe(gulp.dest(paths.serverJS.dist));
 })
 
 gulp.task('build', ['clean'], (cb) => {
-  runSeq([
-	'build:serverJS'
-  ], cb);
+	runSeq([
+		'build:serverJS'
+	], cb);
 });
