@@ -71,7 +71,6 @@
     "@angularclass/request-idle-callback": "^1.0.7",
     "@angularclass/webpack-toolkit": "^1.0.1",
     "awesome-bootstrap-checkbox": "^1.0.0-alpha.4",
-    "bootstrap": "^3.3.6",
     "bootstrap-sass": "^3.3.6",
     "compass-sass-mixins": "^0.12.7",
     "core-js": "^2.4.0",
