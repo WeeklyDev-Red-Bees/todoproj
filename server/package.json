@@ -29,7 +29,7 @@
   "scripts": {
     "prestart": "gulp build",
     "start": "node ./bin/www",
-    "postinstall": "gulp build"
+    "postinstall": "./node_modules/.bin/gulp build"
   },
   "dependencies": {
     "bcrypt": "^0.8.7",
