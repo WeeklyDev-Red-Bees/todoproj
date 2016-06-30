@@ -1,6 +1,0 @@
-{
-  "name": "Red Bees Todo Project",
-  "description": "/r/webdev Weekly Project Submission",
-  "repository": "https://github.com/WeeklyDev-Red-Bees/todoproj",
-  "image": "heroku/nodejs"
-}

@@ -40,7 +40,7 @@ npm-debug.log
 
 # Typing #
 /src/typings/tsd/
-; /typings/
+/typings/
 /tsd_typings/
 
 # Dist #
