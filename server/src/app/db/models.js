@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
-import bcrypt from 'bcrypt';
+// import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
 var taskSchema = new mongoose.Schema({
   title: {
@@ -14,6 +15,18 @@ var taskSchema = new mongoose.Schema({
     type: String,
     enum: ['High', 'Moderate', 'Low'],
     default: 'Moderate'
+  },
+  color: {
+    type: String,
+    enum: [
+      'red',
+      'yellow',
+      'orange',
+      'green',
+      'blue',
+      'purple'
+    ],
+    required: [true, 'A task requires a color.']
   },
   completed: {
     type: Boolean,

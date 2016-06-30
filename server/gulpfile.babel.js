@@ -173,11 +173,11 @@ gulp.task('update:favicon', (cb) => {
 
 gulp.task('build', ['clean'], (cb) => {
   runSeq([
-    'build:fonts',
-    'build:img',
-    'build:js',
-    'build:css',
-    'build:templates',
+    // 'build:fonts',
+    // 'build:img',
+    // 'build:js',
+    // 'build:css',
+    // 'build:templates',
     'build:serverJS'
   ], cb);
 });
