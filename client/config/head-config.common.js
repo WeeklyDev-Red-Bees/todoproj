@@ -33,13 +33,18 @@ module.exports = {
     { rel: "icon", type: "image/png", sizes: "32x32", href: "/assets/icon/favicon-32x32.png" },
     { rel: "icon", type: "image/png", sizes: "96x96", href: "/assets/icon/favicon-96x96.png" },
     { rel: "icon", type: "image/png", sizes: "16x16", href: "/assets/icon/favicon-16x16.png" },
+    { rel: "shortcut icon", href: "/assets/icon/favicon.ico" },
+
+    { rel: "mask-icon", color: "#5bbad5", href: "/assets/icon/safari-pinned-tab.svg" },
 
     /** <link> tags for a Web App Manifest **/
     { rel: "manifest", href: "/assets/manifest.json" }
   ],
   meta: [
-    { name: "msapplication-TileColor", content: "#00bcd4" },
+    { name: "msapplication-config", content: "/assets/icon/browserconfig.xml" },
+    { name: "msapplication-TileColor", content: "#da532c" },
     { name: "msapplication-TileImage", content: "/assets/icon/ms-icon-144x144.png", "=content": true },
-    { name: "theme-color", content: "#00bcd4" }
+    { name: "theme-color", content: "#ef4438" }
   ]
 };
+
