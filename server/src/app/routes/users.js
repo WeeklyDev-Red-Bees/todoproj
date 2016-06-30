@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import jwt from 'jsonwebtoken';
 import config from 'config';
-import { User } from '../db';
+import { User, Task } from '../db';
 
 class UserRoutes {
   constructor(passport) {
@@ -14,6 +14,7 @@ class UserRoutes {
     let router = Router();
     
     router.post('/auth', (req, res, next) => {
+      console.log(req.body);
       this.passport.authenticate('local-login', (err, user, info) => {
         if (err) {
           return next(err);
@@ -53,10 +54,34 @@ class UserRoutes {
     let router = Router();
     
     router.get('/', (req, res) => {
-      User.findById(req.dec.id)
+      // console.log(req);
+      User.findById(req.user).populate('tasks')
         .catch((err) => res.json({ success: false, err }))
         .then((user) => {
+          user = user.toObject();
+          delete user.password;
           res.json({ success: true, user });
+        });
+    });
+    
+    router.post('/tasks', (req, res) => {
+      // console.log(req.body);
+      User.findById(req.user)
+        .catch((err) => res.json({ success: false, err }))
+        .then((user) => {
+          let task = new Task({
+            title: req.body.title,
+            desc: req.body.desc,
+            priority: req.body.priority,
+            color: req.body.color,
+            user: req.user
+          });
+          
+          task.save()
+            .catch((err) => res.json({ success: false, err }))
+            .then((_task) => {
+              res.json({ success: true, task: _task });
+            });
         });
     });
     

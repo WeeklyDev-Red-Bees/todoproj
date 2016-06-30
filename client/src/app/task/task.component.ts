@@ -1,18 +1,12 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-
-export interface Task {
-  title: string;
-  desc: string;
-  color: string;
-  completed: boolean;
-}
+import { Task } from './task.service';
 
 @Component({
   selector: 'task',
   template: require('./task.html')
 })
 export class TaskComponent {
-  @Input('task') task;
+  @Input('task') task: Task;
   @Input('idx') idx;
   @Output() onClick = new EventEmitter();
   

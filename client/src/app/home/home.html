@@ -3,10 +3,15 @@
     <div class="row">
       <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-5 col-md-offset-3">
         <div class="content">
-          <signup></signup>
+          <signup (onSignup)="signIn($event)"></signup>
           <login></login>
         </div>
-        <task-list></task-list>
+        <!--<task-list></task-list>-->
+        <div class="task-list">
+          <task *ngFor="let task of tasks let idx=index"
+            [task]="task" [idx]="idx"
+            (onClick)="setChecked($event)"></task>
+        </div>
       </div>
     </div>
   </div>

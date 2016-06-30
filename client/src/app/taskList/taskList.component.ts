@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TaskComponent, Task } from '../task';
 
 @Component({
@@ -7,29 +7,29 @@ import { TaskComponent, Task } from '../task';
   template: require('./taskList.html')
 })
 export class TaskListComponent implements OnInit {
-  tasks: Task[];
+  @Input('tasks') tasks: Task[];
   
   constructor() {
   }
   
   ngOnInit() {
-    let colors = [
-      'red',
-      'orange',
-      'yellow',
-      'green',
-      'blue',
-      'purple'
-    ];
+    // let colors = [
+    //   'red',
+    //   'orange',
+    //   'yellow',
+    //   'green',
+    //   'blue',
+    //   'purple'
+    // ];
     
-    this.tasks = colors.map((v) => {
-      return {
-        title: 'Pick up Dry Cleaning',
-        desc: "Ticket #24, at Al's Drycleaning.",
-        color: v,
-        completed: false
-      }
-    });
+    // this.tasks = colors.map((v) => {
+    //   return {
+    //     title: 'Pick up Dry Cleaning',
+    //     desc: "Ticket #24, at Al's Drycleaning.",
+    //     color: v,
+    //     completed: false
+    //   }
+    // });
   }
   
   setChecked(idx: number): void {
