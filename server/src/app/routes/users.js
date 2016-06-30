@@ -52,7 +52,13 @@ class UserRoutes {
   protectedRoutes() {
     let router = Router();
     
-    
+    router.get('/', (req, res) => {
+      User.findById(req.dec.id)
+        .catch((err) => res.json({ success: false, err }))
+        .then((user) => {
+          res.json({ success: true, user });
+        });
+    });
     
     this.protected = router;
   }
