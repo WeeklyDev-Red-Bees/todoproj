@@ -13,18 +13,20 @@ class UserRoutes {
   unprotectedRoutes() {
     let router = Router();
     
-    router.post('/auth', (req, res, next) => {
-      this.passport.authenticate('local-login', (err, user, info) => {
-        if (err) {
-          return next(err);
-        } else if (!user) {
-          return res.json({ success: false, err: "No user." });
-        } else {
-          let token = jwt.sign({ id: user._id }, config.get('secrets.jwt'));
-          res.json({ success: true, token });
-        }
-      }, { session: false })(req, res, next);
-    });
+    // router.post('/auth', (req, res, next) => {
+    //   this.passport.authenticate('local-login', (err, user, info) => {
+    //     if (err) {
+    //       return next(err);
+    //     } else if (!user) {
+    //       return res.json({ success: false, err: "No user." });
+    //     } else {
+    //       let token = jwt.sign({ id: user._id }, config.get('secrets.jwt'));
+    //       res.json({ success: true, token });
+    //     }
+    //   }, { session: false })(req, res, next);
+    // });
+    
+    router.use('/auth', this.authRoutes());
     
     router.post('/', (req, res, next) => {
       this.passport.authenticate('local-signup', (err, user, info) => {
@@ -55,6 +57,61 @@ class UserRoutes {
     
     
     this.protected = router;
+  }
+  
+  authRoutes() {
+    let router = Router();
+    let genToken = (res, next) => {
+      return (err, user, info) => {
+        if (err) {
+          return next(err);
+        } else if (!user) {
+          return res.json({ success: false, err: "No user." });
+        } else {
+          let token = jwt.sign({ id: user._id }, config.get('secrets.jwt'));
+          res.json({ success: true, token });
+        }
+      };
+    };
+    router.post('/local', (req, res, next) => {
+      this.passport.authenticate('local-login', genToken(res, next), { session: false })(req, res, next);
+    });
+    
+    // router.get('/facebook', (req, res, next) => {
+    //   this.passport.authenticate('facebook', (err, user, info) => {
+    //     if (err) {
+    //       return next(err);
+    //     } else if (!user) {
+    //       return res.json({ success: false, err: "No user." });
+    //     } else {
+    //       let token = jwt.sign({ id: user._id }, config.get('secrets.jwt'));
+    //       res.json({ success: true, token });
+    //     }
+    //   }, {
+    //     session: false,
+    //     successRedirect: '/',
+    //     failureRedirect: '/'
+    //   })(req, res, next);
+    // });
+    
+    // router.get('/twitter', (req, res, next) => {
+    //   this.passport.authenticate('twitter', (err, user, info) => {
+    //     if (err) {
+    //       return next(err);
+    //     } else if (!user) {
+    //       return res.json({ success: false, err: "No user." });
+    //     } else {
+    //       let token = jwt.sign({ id: user._id }, config.get('secrets.jwt'));
+    //       res.json({ success: true, token });
+    //     }
+    //   }, {
+    //     session: false,
+    //     successRedirect: '/',
+    //     failureRedirect: '/'
+    //   })(req, res, next);
+    // });
+    
+    return router;
   }
 }
 

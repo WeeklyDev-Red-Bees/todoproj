@@ -3,14 +3,17 @@ import jwt from 'jsonwebtoken';
 import config from 'config';
 import { User } from '../db';
 import { makeUserRoutes } from './users';
+import { makeAuthRoutes } from './auth';
 // import { makeTaskRoutes } from './tasks';
 
 export function makeRoutes(passport) {
   let router = Router();
   
   let userRoutes = makeUserRoutes(passport);
+  let authRoutes = makeAuthRoutes(passport);
   // let taskRoutes = makeTaskRoutes();
   router.use('/users', userRoutes.unprotected);
+  router.use('/auth', authRoutes.unprotected);
   // router.use('/tasks', taskRoutes.unprotected);
   
   // TODO: Implement JWT authentication
@@ -33,6 +36,7 @@ export function makeRoutes(passport) {
   });
   
   router.use('/users', userRoutes.protected);
+  router.use('/auth', authRoutes.unprotected);
   // router.use('/tasks', taskRoutes.protected);
   
   return router;

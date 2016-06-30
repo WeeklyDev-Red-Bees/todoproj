@@ -6,5 +6,22 @@
     "host": "127.0.0.1",
     "name": "todoproj",
     "port": "27017"
+  },
+  "auth": {
+    "facebook": {
+      "clientID": "1327101067319657",
+      "clientSecret": "e5a4049c8971719a9330e8a712f3bf26",
+      "callbackURL": "http://rails.ninja4826.me/api/users/auth/facebook"
+    },
+    "twitter": {
+      "consumerKey": "YyP0KTfEj4PS2pI1SbSdqOSbS",
+      "consumerSecret": "amdQ66Ld1CupNKcD0cTtJkAEmHur9E8cp19UCws16fnClrvJ6L",
+      "callbackURL": "http://rails.ninja4826.me/api/users/auth/twitter"
+    },
+    "google": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": ""
+    }
   }
 }

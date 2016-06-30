@@ -1,8 +1,9 @@
+import config from 'config';
 import { Strategy as LocalStrategy } from 'passport-local';
-// import { Strategy as FacebookStrategy } from 'passport-facebook';
-// import { Strategy as TwitterStrategy } from 'passport-twitter';
+import { Strategy as FacebookStrategy } from 'passport-facebook';
+import { Strategy as TwitterStrategy } from 'passport-twitter';
 // import { Strategy as GoogleStrategy } from 'passport-google-oauth';
-// import { Strategy as GitHubStrategy } from 'passport-github';
+// import { OAuth2Strategy as GitHubStrategy } from 'passport-github';
 
 import { User } from './db';
 
@@ -12,7 +13,7 @@ class PassportConfig {
     
     this.configLocal();
     // this.configFacebook();
-    // this.configTwitter();
+    this.configTwitter();
     // this.configGoogle();
     // this.configGitHub();
   }
@@ -37,7 +38,8 @@ class PassportConfig {
               local: {
                 email,
                 password
-              }
+              },
+              provider: 'local'
             });
             console.log(newUser);
             newUser.save()
@@ -57,7 +59,7 @@ class PassportConfig {
       passReqToCallback: true
     }, (req, email, password, done) => {
       User.findOne({ 'local.email': email })
-        .catch((err) => done(err))
+        .catch((err) => done(err, false))
         .then((user) => {
           if (!user) {
             return done(new Error("User not found."), false);
@@ -67,6 +69,76 @@ class PassportConfig {
             } else {
               return done(null, user);
             }
+          }
+        });
+    }));
+  }
+  
+  configFacebook() {
+    let opts = config.get('auth.facebook');
+    // opts.session = false;
+    opts.passReqToCallback = true;
+    opts.enableProof = true;
+    this.passport.use(new FacebookStrategy(opts, (req, token, refreshToken, profile, done) => {
+      console.log('profile:', profile);
+      console.log('token:', token);
+      User.findOne({ 'facebook.id': profile.id })
+        .catch((err) => done(err, false))
+        .then((user) => {
+          if (user) {
+            return done(null, user);
+          } else {
+            user = new User({
+              facebook: {
+                id: profile.id,
+                token: token,
+                name: profile.displayName
+              },
+              provider: 'facebook'
+            });
+            
+            // console.log('ugh');
+            // console.log(user);
+            // console.log('user:', user.validateSync());
+            user.save()
+              .catch((err) => done(err, false))
+              .then((newUser) => {
+                console.log('new user:', newUser);
+                return done(null, newUser);
+              });
+          }
+        });
+    }));
+  }
+  
+  configTwitter() {
+    let opts = config.get('auth.twitter');
+    opts.passReqToCallback = true;
+    
+    this.passport.use(new TwitterStrategy(opts, (req, token, tokenSecret, profile, done) => {
+      console.log('token:', token);
+      console.log('profile:', profile);
+      User.findOne({ 'twitter.id': profile.id })
+        .catch((err) => done(err, false))
+        .then((user) => {
+          if (user) {
+            return done(null, user);
+          } else {
+            user = new User({
+              twitter: {
+                id: profile.id,
+                token,
+                displayName: profile.displayName,
+                username: profile.username
+              }
+            });
+            
+            user.save()
+              .catch((err) => done(err, false))
+              .then((newUser) => {
+                console.log('new user:', newUser);
+                return done(null, newUser);
+              });
           }
         });
     }));
