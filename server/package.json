@@ -27,6 +27,7 @@
     }
   ],
   "scripts": {
+    "prestart": "gulp build",
     "start": "node ./bin/www",
     "postinstall": "bower install"
   },

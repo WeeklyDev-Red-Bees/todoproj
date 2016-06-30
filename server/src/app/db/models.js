@@ -51,7 +51,7 @@ var userSchema = new mongoose.Schema({
     name: String
   },
   tasks: [taskSchema]
-});
+}, { timestamps: true });
 
 userSchema.pre('save', function(next) {
   if (this.isModified('local.password') || (this.isNew() && 'local' in this)) {
