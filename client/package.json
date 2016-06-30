@@ -56,6 +56,7 @@
     "preversion": "npm test",
     "version": "npm run build",
     "postversion": "git push && git push --tags",
+    
     "postinstall": "typings -- install && npm run build"
   },
   "dependencies": {
