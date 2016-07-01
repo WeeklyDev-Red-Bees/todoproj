@@ -23,6 +23,10 @@ import 'rxjs/add/operator/mergeMap';
 // Node-UUID
 import 'node-uuid';
 
+import 'compass-sass-mixins/lib/_compass.sass';
+import 'bootstrap-sass/assets/stylesheets/_bootstrap.scss';
+
+
 if ('production' === ENV) {
   // Production
 

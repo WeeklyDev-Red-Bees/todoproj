@@ -176,7 +176,7 @@ module.exports = {
         loader: 'raw-loader',
         exclude: [helpers.root('src/index.html')]
       }, {
-        test: /\.scss$/,
+        test: /\.s[ac]ss$/,
         // loaders: ['raw-loader', 'css-loader', 'sass-loader']
         loader: 'raw!postcss!sass'
       }
