@@ -3,7 +3,7 @@ import { SignupComponent, Submission } from '../signup';
 import { LoginComponent } from '../login';
 // import { TaskListComponent } from '../taskList';
 import { Task, TaskComponent } from '../task';
-import { UserService, User } from '../user';
+import { UserService, User, TokenRes, UserRes } from '../user';
 
 @Component({
   selector: 'home',
@@ -13,7 +13,7 @@ import { UserService, User } from '../user';
 })
 export class HomeComponent {
   userService: UserService;
-  tasks: Task[] = [];
+  user: User;
   
   constructor(userService: UserService) {
     this.userService = userService;
@@ -29,14 +29,34 @@ export class HomeComponent {
   }
   
   signIn(submission: Submission): void {
-    this.userService.login(submission.email, submission.password).subscribe((token: string) => {
-      this.userService.setToken(token);
-      console.log('token set:', token);
-      this.userService.getUser().subscribe((user: User) => {
-        this.userService.setUser(user);
-        this.tasks = user.tasks;
-        console.log('user set:', user);
-      });
+    // this.userService.login(submission.email, submission.password).subscribe((token: string) => {
+    //   if (token) {
+    //     this.userService.setToken(token);
+    //     console.log('token set:', token);
+    //     this.userService.getUser().subscribe((user: User) => {
+    //       this.userService.setUser(user);
+    //       this.tasks = user.tasks;
+    //       console.log('user set:', user);
+    //     });
+    //   } else {
+        
+    //   }
+    // });
+    console.log('ugh');
+    this.userService.login(submission.email, submission.password).subscribe((res: TokenRes) => {
+      if (res.success) {
+        this.retrieveUser();
+      } else {
+        // TODO: Implement signup dialog
+      }
     });
+  }
+  
+  private retrieveUser(): void {
+    this.userService.getUser().subscribe((res: UserRes) => {
+      if (res.success) {
+        this.user = res.user;
+      }
+    })
   }
 }

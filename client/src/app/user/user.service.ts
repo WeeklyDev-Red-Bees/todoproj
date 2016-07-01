@@ -9,6 +9,22 @@ export interface User {
   tasks: [Task];
 }
 
+// export interface LoginCallback {
+//   (err: Error, user?: User): void;
+// }
+
+export interface TokenRes {
+  success: boolean;
+  err?: string;
+  token: string;
+}
+
+export interface UserRes {
+  success: boolean;
+  err?: string;
+  user: User;
+}
+
 @Injectable()
 export class UserService {
   private http: Http;
@@ -18,20 +34,29 @@ export class UserService {
     this.http = http;
   }
   
-  login(email: string, password: string): Observable<string> {
-    if (this.token) {
-      throw new Error("User has already been logged in.");
-    }
+  login(email: string, password: string): Observable<TokenRes> {
     return this.http.post("/api/users/auth", { email, password}, this.jsonHeader())
       .map((res: Response) => {
         let body = res.json();
         if (body.success) {
-          return body.token;
+          this.token = body.token;
         }
+        return body;
       });
   }
   
-  getUser(): Observable<User> {
+  signup(email: string, password: string): Observable<TokenRes> {
+    return this.http.post("/api/users", { email, password }, this.jsonHeader())
+      .map((res: Response) => {
+        let body = res.json();
+        if (body.success) {
+          this.token = body.token;
+        }
+        return body;
+      });
+  }
+  
+  getUser(): Observable<UserRes> {
     if (!this.token) {
       throw new Error("User has not signed in.");
     }
@@ -39,8 +64,9 @@ export class UserService {
       .map((res: Response) => {
         let body = res.json();
         if (body.success) {
-          return body.user;
+          this.user = body.user;
         }
+        return body;
       });
   }
   

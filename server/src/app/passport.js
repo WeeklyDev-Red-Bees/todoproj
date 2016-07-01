@@ -60,10 +60,11 @@ class PassportConfig {
         .catch((err) => done(err, false))
         .then((user) => {
           if (!user) {
-            return done(new Error("User not found."), false);
+            return done(null, false);
           } else {
             if (!user.validPassword(password)) {
-              return done(new Error("Invalid password."), false);
+              // return done(new Error("Invalid password."), false);
+              return done(null, false);
             } else {
               return done(null, user);
             }
