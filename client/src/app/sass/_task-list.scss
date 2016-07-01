@@ -1,0 +1,164 @@
+.task-list {
+	background: $dk-gray;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	.task {
+		+ .task {
+			.task-container {
+				border-top: 1px solid darken($dk-gray, 5%);
+			}
+		}
+	}
+}
+
+.task-container {
+	position: relative;
+	display: flex;
+	&.done {
+		background: darken($dk-gray, 5%);
+		> div {
+			&.info {
+				.title {
+					font-style: italic;
+					font-weight: 100;
+					color: $gray;
+					text-decoration: line-through;
+				}
+				.desc {
+					p {
+						color: $gray;
+					}
+				}
+			}
+		}
+	}
+}
+
+.task-color {
+	width: 10px;
+	&.red {
+		background: $red;
+	}
+	&.orange {
+		background: $orange;
+	}
+	&.yellow {
+		background: $yellow;
+	}
+	&.blue {
+		background: $blue;
+	}
+	&.green {
+		background: $green;
+	}
+	&.purple {
+		background: $purple;
+	}
+}
+
+.ui-panel {
+	text-align: right;
+	margin: 15px 0;
+	.icon {
+		padding: 10px;
+		font-size: 22px;
+	}
+	.icon-star {
+		&.red {
+			&::before {
+				color: $red;
+			}
+		}
+		&.orange {
+			&::before {
+				color: $orange;
+			}
+		}
+		&.yellow {
+			&::before {
+				color: $yellow;
+			}
+		}
+		&.blue {
+			&::before {
+				color: $blue;
+			}
+		}
+		&.green {
+			&::before {
+				color: $green;
+			}
+		}
+		&.purple {
+			&::before {
+				color: $purple;
+			}
+		}
+	}
+}
+
+.task-info {
+	overflow: hidden;
+	cursor: pointer;
+	width: 100%;
+	padding: 10px;
+	.title {
+		font-size: 24px;
+		text-transform: uppercase;
+		font-weight: 200;
+		font-family: $font-family-default;
+		&:hover {
+			background: darken($dk-gray, 5%);
+			cursor: text;
+		}
+	}
+	.desc {
+		max-height: 0;
+		transform: translate(0, 2em);
+		@include transition(max-height 0.3s linear 0s, transform 0.3s linear 0s);
+		p {
+			&:hover {
+				background: darken($dk-gray, 5%);
+				cursor: text;
+			}
+		}
+	}
+	&:hover {
+		.desc {
+			max-height: 8em;
+			transform: translate(0);
+		}
+	}
+}
+
+.check {
+	background: darken($dk-gray, 5%);
+	padding: 14px;
+	input {
+		display: none;
+	}
+	input:checked + label {
+		&:before {
+			color: $orange;
+			content: "\f00c";
+		}
+	}
+	label {
+		width: 25px;
+		height: 25px;
+		border-radius: 100%;
+		cursor: pointer;
+		border: 2px solid $input-border-color;
+		position: relative;
+		margin: 0;
+		&:before {
+			font-size: 1em;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			color: transparent;
+			transform: translate(-50%, -50%);
+		}
+	}
+}

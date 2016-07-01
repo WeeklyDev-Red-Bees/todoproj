@@ -3,8 +3,8 @@
 .btn {
 	cursor: pointer;
 	@include transition(background .3s linear);
-	i {
-		display:block
+	.icon {
+		display: block
 	}
 	&.facebook {
 		background: #3b5998;

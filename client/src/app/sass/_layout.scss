@@ -1,214 +1,38 @@
 body {
 	height: 100vh;
 	color: #fff;
-	font-family: 'Open Sans', sans-serif;
+	font-family: $font-family-default;
 	background-color: #2b2d42;
 	@include filter-gradient(#2b2d42, #edf2f4, horizontal);
-	section {
-		padding: 80px 0;
-		&.top {
-			padding-bottom: 0;
-			h1 {
-				text-align: center;
-			}
-			p {
-				text-align: center;
-			}
-			.logo {	
-				text-align:center;
-				display:block;
-				margin:0 auto;
-				height:128px;
-				width:128px;
-				img{
-					max-width:100%;
-					max-height:100%;
-					margin:auto;
-					display:block;
-				}
-			}
-		}
-		&.main {
-			padding-top: 40px;
-			.content {
-				background: rgba(0, 0, 0, .3);
-				padding: 30px;
-				.signup {
-					h2 {
-						margin-top: 0;
-					}
-				}
-			}
-			.ui-panel {
-				text-align: right;
-				margin:15px 0;
-				i {
-					padding: 10px;
-					font-size: 22px;
-					&.icon-star {
-						&.red {
-							&::before {
-								color: $red;
-							}
-						}
-						&.orange {
-							&::before {
-								color: $orange;
-							}
-						}
-						&.yellow {
-							&::before {
-								color: $yellow;
-							}
-						}
-						&.blue {
-							&::before {
-								color: $blue;
-							}
-						}
-						&.green {
-							&::before {
-								color: $green;
-							}
-						}
-						&.purple {
-							&::before {
-								color: $purple;
-							}
-						}
-					}
-				}
-			}
-			.task-list {
-				background: $dk-gray;
-				ul {
-					margin: 0;
-					padding: 0;
-					list-style-type: none;
-					li {
-						padding: 0;
-					}
-				}
-				task {
-					+ task {
-						.task {
-							border-top:1px solid darken($dk-gray, 5%);
-						}
-					}
-					.task {
-						position: relative;
-						&::before {
-							content: "";
-							display: block;
-							height: 100%;
-							position: absolute;
-							right: 0;
-							top: 0;
-							width: 10px;
-						}
-						&.red {
-							&::before {
-								background: $red;
-							}
-						}
-						&.orange {
-							&::before {
-								background: $orange;
-							}
-						}
-						&.yellow {
-							&::before {
-								background: $yellow;
-							}
-						}
-						&.blue {
-							&::before {
-								background: $blue;
-							}
-						}
-						&.green {
-							&::before {
-								background: $green;
-							}
-						}
-						&.purple {
-							&::before {
-								background: $purple;
-							}
-						}
-						> div {
-							display: table-cell;
-							padding: 10px;
-							&.check {
-								background: darken($dk-gray, 5%);
-								vertical-align: middle;
-								padding: 10px 20px;
-								.checkbox {
-									margin: 0;
-									label {
-										padding: 0;
-										&::before {
-											border: none;
-										}
-										&::after {
-											color: $green;
-										}
-									}
-								}
-							}
-							&.info {
-								overflow: hidden;
-								cursor: pointer;
-								.title {
-									font-size: 24px;
-									text-transform: uppercase;
-									font-weight: 200;
-									font-family: $font-family-default;
-									&:hover {
-										background: darken($dk-gray, 5%);
-										cursor:text;
-									}
-								}
-								.desc {
-									max-height: 0;
-									transform: translate(0, 20px);
-									@include transition(max-height 0.3s linear 0s,
-									transform 0.3s linear 0s);
-									p {
-										&:hover {
-											background: darken($dk-gray, 5%);
-											cursor:text;
-										}
-									}
-								}
-								&:hover {
-									.desc {
-										max-height: 8em;
-										transform: translate(0)
-									}
-								}
-							}
-						}
-						&.done {
-							background:darken($dk-gray, 5%);
-							> div {
-								&.info {
-									.title {
-										font-style:italic;
-										font-weight:100;
-										color:$gray;
-										text-decoration: line-through;
-									}
-									.desc {
-										p {
-											color:$gray;
-										}
-									}
-								}
-							}
-						}
-					}
-				}
+}
+
+.logo {
+	display: block;
+	margin: 0 auto;
+	height: 128px;
+	width: 128px;
+}
+
+.header {
+	padding-top: 80px;
+}
+
+.project-title {
+	text-align: center;
+}
+
+.subtitle {
+	text-align: center;
+}
+
+.main {
+	padding: 80px 0 40px 0;
+	.content {
+		background: rgba(0, 0, 0, .3);
+		padding: 30px;
+		.signup {
+			h2 {
+				margin-top: 0;
 			}
 		}
 	}
