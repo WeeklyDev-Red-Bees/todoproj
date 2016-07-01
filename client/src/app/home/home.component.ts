@@ -14,13 +14,30 @@ import { UserService, User, TokenRes, UserRes } from '../user';
 export class HomeComponent {
   userService: UserService;
   user: User;
+  tasks: Task[];
   
   constructor(userService: UserService) {
     this.userService = userService;
   }
   
   ngOnInit() {
+    let colors = [
+      'red',
+      'orange',
+      'yellow',
+      'green',
+      'blue',
+      'purple'
+    ];
     
+    this.tasks = colors.map((v) => {
+      return {
+        title: 'Pick up Dry Cleaning',
+        desc: "Ticket #24, at Al's Drycleaning.",
+        color: v,
+        completed: false
+      }
+    });
   }
   
   setChecked(idx: number): void {
@@ -56,6 +73,7 @@ export class HomeComponent {
     this.userService.getUser().subscribe((res: UserRes) => {
       if (res.success) {
         this.user = res.user;
+        this.tasks = this.user.tasks;
       }
     })
   }

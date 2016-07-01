@@ -5,7 +5,7 @@
  */
 
 // var app = require('../app');
-var app = require('../dist/app').initializeServer();
+var app = require('../dist').initializeServer();
 var debug = require('debug')('todoproj:server');
 var http = require('http');
 

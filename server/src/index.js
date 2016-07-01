@@ -34,12 +34,12 @@ export function initializeServer() {
   
   app.use(passport.initialize());
   
-  app.use(express.static(path.join(__dirname, '..', '..', '..', 'client', 'dist')));
+  app.use(express.static(path.join(__dirname, '..', '..', 'client', 'dist')));
   
   app.use('/api', makeRoutes(configPassport(passport)));
   
   app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', '..', '..', 'client', 'dist', 'index.html'))
+    res.sendFile(path.join(__dirname, '..', '..', 'client', 'dist', 'index.html'))
   })
   
   // app.use((req, res, next) => {

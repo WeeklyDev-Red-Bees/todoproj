@@ -10,7 +10,8 @@
 		<div class="desc">
 			<p>{{ task.desc }}</p>
 			<div class="ui-panel">
-				<i class="icon icon-star red"></i> <i class="icon icon-star orange"></i> <i class="icon icon-star yellow"></i> <i class="icon icon-star green"></i> <i class="icon icon-star blue"></i> <i class="icon icon-star purple"></i><i class="icon icon-trash"></i>
+				<i *ngFor="let color of colors" class=" icon icon-star {{ color }}" (click)="setColor(color)"></i><i class="icon icon-trash" (click)="deleteTask(idx)"></i>
+				<!--<i class="icon icon-star red"></i> <i class="icon icon-star orange"></i> <i class="icon icon-star yellow"></i> <i class="icon icon-star green"></i> <i class="icon icon-star blue"></i> <i class="icon icon-star purple"></i><i class="icon icon-trash"></i>-->
 			</div>
 		</div>
 	</div>

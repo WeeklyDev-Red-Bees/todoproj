@@ -8,8 +8,8 @@ var plugins = gLP();
 
 var paths = {
 	serverJS: {
-		'src': 'src/app/**/*.js',
-		'dist': 'dist/app'
+		'src': 'src/**/*.js',
+		'dist': 'dist'
 	}
 };
 

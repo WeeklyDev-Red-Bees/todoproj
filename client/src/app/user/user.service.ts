@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Task } from '../task';
@@ -28,8 +28,11 @@ export interface UserRes {
 @Injectable()
 export class UserService {
   private http: Http;
-  user: User;
-  token: string;
+  private _user: User;
+  private _token: string;
+  userEmitter: EventEmitter<User> = new EventEmitter<User>();
+  tokenEmitter: EventEmitter<string> = new EventEmitter<string>();
+  
   constructor(http: Http) {
     this.http = http;
   }
@@ -60,6 +63,9 @@ export class UserService {
     if (!this.token) {
       throw new Error("User has not signed in.");
     }
+    if (this.user) {
+      return null;
+    }
     return this.http.get('/api/users/', this.authHeader())
       .map((res: Response) => {
         let body = res.json();
@@ -70,13 +76,13 @@ export class UserService {
       });
   }
   
-  setToken(token: string): void {
-    this.token = token;
-  }
+  // setToken(token: string): void {
+  //   this.token = token;
+  // }
   
-  setUser(user: User): void {
-    this.user = user;
-  }
+  // setUser(user: User): void {
+  //   this.user = user;
+  // }
   
   logout(): void {
     this.token = null;
@@ -103,5 +109,23 @@ export class UserService {
       });
     }
     return reqOpts;
+  }
+  
+  get user(): User {
+    return this._user;
+  }
+  
+  set user(v: User) {
+    this._user = v;
+    this.userEmitter.emit(this._user);
+  }
+  
+  get token(): string {
+    return this._token;
+  }
+  
+  set token(v: string) {
+    this._token = v;
+    this.tokenEmitter.emit(this._token);
   }
 }
