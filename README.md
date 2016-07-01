@@ -38,49 +38,22 @@ http://weeklydev.io/ ([/r/webdev](https://www.reddit.com/r/webdev)) Project 1 Su
 
 1. Go to project folder in console
 
+1. Install required global libraries
+
+	```
+	npm install -g typings webpack-dev-server rimraf webpack
+	```
+
+1. Install modules from package.json
+
+	```
+	npm install
+	```
+	
 1. Install modules from package.json
 
 	```
 	npm install
 	```
 
-1. Install gulp globally
-
-	```
-	npm install gulp -g
-	```
-
-1. Run gulp to watch all file changes (uses browser-sync to watch css/js/html and gulp-nodemon to watch server files changes)
-
-	```
-	gulp
-	```
-
-1. Access [http://localhost:3000](http://localhost:3000)
-
-### Install bower.json
-
-1. Install [bower](https://bower.io/) globally
-
-	```
-	npm install -g bower
-	```
-
-1. Install bower packages from bower.json
-
-	```
-	bower install
-	```
-
-## Resources
-
-* [http://weeklydev.io/the-bees-are-with-us/](http://weeklydev.io/the-bees-are-with-us/)
-
-## Stack
-
-* [Bootstrap](http://getbootstrap.com/)
-* [EJS](http://ejs.co/)
-* [Express](http://expressjs.com/)
-* [Firebase](https://firebase.google.com/)
-* [jQuery](https://jquery.com/)
-* [Socket.io](http://socket.io/)
+1. Access [http://localhost:4000](http://localhost:4000)
