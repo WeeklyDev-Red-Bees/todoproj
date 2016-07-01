@@ -20,12 +20,14 @@ export function makeRoutes(passport) {
     if (token) {
       jwt.verify(token, config.get('secrets.jwt'), (err, decoded) => {
         if (err) {
-          return res.json({ success: false, err });
+          res.json({ success: false, err });
+          next(err);
         } else {
           User.findById(decoded.id)
             .catch((err) => res.json({ success: false, err }))
             .then((user) => {
-              req.dec = user;
+              req.user = user._id;
+              next();
             });
         }
       });

@@ -15,4 +15,5 @@ export function initializeDatabase() {
   mongoose.connect(dbURI);
 }
 
-export * from './models';
+export * from './user';
+export * from './task';

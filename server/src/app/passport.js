@@ -35,11 +35,8 @@ class PassportConfig {
             return done(new Error("User already exists."), false);
           } else {
             let newUser = new User({
-              local: {
-                email,
-                password
-              },
-              provider: 'local'
+              email,
+              password
             });
             console.log(newUser);
             newUser.save()
@@ -58,14 +55,16 @@ class PassportConfig {
       passwordField: 'password',
       passReqToCallback: true
     }, (req, email, password, done) => {
-      User.findOne({ 'local.email': email })
+      console.log('email:', email);
+      User.findOne({ email })
         .catch((err) => done(err, false))
         .then((user) => {
           if (!user) {
-            return done(new Error("User not found."), false);
+            return done(null, false);
           } else {
             if (!user.validPassword(password)) {
-              return done(new Error("Invalid password."), false);
+              // return done(new Error("Invalid password."), false);
+              return done(null, false);
             } else {
               return done(null, user);
             }

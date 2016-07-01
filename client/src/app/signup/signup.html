@@ -3,12 +3,12 @@
   <form>
     <div class="form-group">
       <label for="email">Email address</label>
-      <input type="email" class="form-control" id="email" placeholder="Email">
+      <input [(ngModel)]="model.email" name="email" type="email" class="form-control" id="email" placeholder="Email">
     </div>
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" class="form-control" id="password" placeholder="Password">
+      <input [(ngModel)]="model.password" name="password" type="password" class="form-control" id="password" placeholder="Password">
     </div>
-    <button type="button" class="btn submit">Submit</button>
+    <button type="button" class="btn submit" [disabled]="canSubmit" (click)="submitClick()">Submit</button>
   </form>
 </div>
