@@ -8,18 +8,18 @@ export interface Task {
 }
 
 @Component({
-  selector: 'task',
+  selector: 'li',
   template: require('./task.html')
 })
 export class TaskComponent {
   @Input('task') task;
   @Input('idx') idx;
   @Output() onClick = new EventEmitter();
-  
+
   constructor() {
-    
+
   }
-  
+
   checkClick() {
     this.onClick.emit(this.idx);
   }
