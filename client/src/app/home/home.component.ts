@@ -5,6 +5,9 @@ import { LoginComponent } from '../login';
 import { Task, TaskComponent } from '../task';
 import { UserService, User, TokenRes, UserRes } from '../user';
 
+// Temporary until example tasks can be removed
+const uuid = require('node-uuid');
+
 @Component({
   selector: 'home',
   directives: [SignupComponent, LoginComponent, TaskComponent],
@@ -32,11 +35,18 @@ export class HomeComponent {
     
     this.tasks = colors.map((v) => {
       return {
+        _id: uuid.v1(),
         title: 'Pick up Dry Cleaning',
         desc: "Ticket #24, at Al's Drycleaning.",
         color: v,
-        completed: false
+        completed: false,
+        example: true
       }
+    });
+    
+    this.userService.userEmitter.subscribe((user: User) => {
+      this.user = user;
+      this.tasks = this.user.tasks;
     });
   }
   
@@ -46,19 +56,6 @@ export class HomeComponent {
   }
   
   signIn(submission: Submission): void {
-    // this.userService.login(submission.email, submission.password).subscribe((token: string) => {
-    //   if (token) {
-    //     this.userService.setToken(token);
-    //     console.log('token set:', token);
-    //     this.userService.getUser().subscribe((user: User) => {
-    //       this.userService.setUser(user);
-    //       this.tasks = user.tasks;
-    //       console.log('user set:', user);
-    //     });
-    //   } else {
-        
-    //   }
-    // });
     console.log('ugh');
     this.userService.login(submission.email, submission.password).subscribe((res: TokenRes) => {
       if (res.success) {

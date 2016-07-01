@@ -116,6 +116,7 @@ export class UserService {
   }
   
   set user(v: User) {
+    console.log('setting user:', v);
     this._user = v;
     this.userEmitter.emit(this._user);
   }
@@ -125,6 +126,7 @@ export class UserService {
   }
   
   set token(v: string) {
+    console.log('setting token:', v);
     this._token = v;
     this.tokenEmitter.emit(this._token);
   }

@@ -1,17 +1,17 @@
 <section class="main">
   <div class="container">
-	<div class="row">
-	  <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-5 col-md-offset-3">
-		<div class="content">
-		  <signup (onSignup)="signIn($event)"></signup>
+		<div class="row">
+		  <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-5 col-md-offset-3">
+				<div class="content" *ngIf="!user">
+				  <signup (onSignup)="signIn($event)"></signup>
+				</div>
+				<!--<task-list></task-list>-->
+				<ul class="task-list">
+				  <li class="task" *ngFor="let task of tasks let idx=index"
+					[task]="task" [idx]="idx"
+					(onClick)="setChecked($event)"></li>
+				</ul>
+		  </div>
 		</div>
-		<!--<task-list></task-list>-->
-		<ul class="task-list">
-		  <li class="task" *ngFor="let task of tasks let idx=index"
-			[task]="task" [idx]="idx"
-			(onClick)="setChecked($event)"></li>
-		</ul>
-	  </div>
-	</div>
   </div>
 </section>

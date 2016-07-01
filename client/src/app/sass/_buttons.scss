@@ -41,4 +41,13 @@
 			color: #fff;
 		}
 	}
+	
+	// Please correct this if its wrong
+	&.cancel {
+		background: $red;
+		&:hover {
+			background: darken($green, 5%);
+			color: #fff;
+		}
+	}
 }

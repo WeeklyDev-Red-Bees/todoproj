@@ -81,3 +81,37 @@ interface ErrorConstructor extends ErrorStackTraceLimit {}
 interface NodeRequireFunction extends Es6PromiseLoader  {}
 interface NodeModule extends WebpackModule {}
 interface Global extends GlobalEnvironment  {}
+
+declare module __NodeUUID {
+  interface V1Options {
+    node: any[];
+    clockSeq: number;
+    msecs: number | Date;
+    nsecs: number;
+  }
+  
+  interface RNGFunction {
+    (): number[];
+  }
+  
+  interface V4Options {
+    random: number[];
+    rng: RNGFunction;
+  }
+  
+  interface UUID {
+    v1(options?: V1Options): string;
+        v1(options?: V1Options, buffer?: number[], offset?: number): number[];
+        v1(options?: V1Options, buffer?: Buffer, offset?: number): Buffer;
+
+        v4(options?: V4Options): string;
+        v4(options?: V4Options, buffer?: number[], offset?: number): number[];
+        v4(options?: V4Options, buffer?: Buffer, offset?: number): Buffer;
+
+        parse(id: string, buffer?: number[], offset?: number): number[];
+        parse(id: string, buffer?: Buffer, offset?: number): Buffer;
+
+        unparse(buffer: number[], offset?: number): string;
+        unparse(buffer: Buffer, offset?: number): string;
+  }
+}

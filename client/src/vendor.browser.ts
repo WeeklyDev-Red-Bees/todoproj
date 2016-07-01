@@ -20,6 +20,9 @@ import '@angularclass/request-idle-callback';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
+// Node-UUID
+import 'node-uuid';
+
 if ('production' === ENV) {
   // Production
 
