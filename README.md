@@ -38,7 +38,7 @@ http://weeklydev.io/ ([/r/webdev](https://www.reddit.com/r/webdev)) Project 1 Su
 
 1. Go to project folder in console
 
-1. Install required global libraries
+1. Add required global libraries
 
 	```
 	npm install -g typings webpack-dev-server rimraf webpack
@@ -49,11 +49,27 @@ http://weeklydev.io/ ([/r/webdev](https://www.reddit.com/r/webdev)) Project 1 Su
 	```
 	npm install
 	```
-	
-1. Install modules from package.json
+
+1. Install typings
 
 	```
-	npm install
+	npm run typings-install
+	```
+
+1. Install mongodb from [https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
+
+1. Make sure mongodb is started
+
+1. Start watch process in client folder
+
+	```
+	webpack --progress --color --watch
+	```
+
+1. Start server process in server folder
+
+	```
+	npm start
 	```
 
 1. Access [http://localhost:4000](http://localhost:4000)
