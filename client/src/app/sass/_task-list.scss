@@ -152,7 +152,7 @@
 	}
 	input:checked + label {
 		&:before {
-			color: $orange;
+			color: $green;
 			content: "\f00c";
 		}
 	}
@@ -171,6 +171,7 @@
 			left: 50%;
 			color: transparent;
 			transform: translate(-50%, -50%);
+			margin-top:-1px;
 		}
 	}
 }
