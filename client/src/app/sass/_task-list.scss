@@ -18,7 +18,7 @@
 	&.done {
 		background: darken($dk-gray, 5%);
 		> div {
-			&.info {
+			&.task-info {
 				.title {
 					font-style: italic;
 					font-weight: 100;
