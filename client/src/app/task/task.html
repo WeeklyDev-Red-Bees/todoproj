@@ -1,4 +1,4 @@
-<div class="task-container">
+<div class="task-container" [class.done]="task.completed">
 	<div class="check">
 		<input [attr.id]="'checkbox-' + (idx + 1)" type="checkbox" [value]="task.completed" (click)="checkClick()">
 		<label class="icon-check" [attr.for]="'checkbox-' + (idx + 1)"></label>
