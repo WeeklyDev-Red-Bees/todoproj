@@ -22,7 +22,7 @@
 	}],
 	"scripts": {
 		"prestart": "gulp build",
-		"start": "node ./bin/www"
+		"start": "env DEBUG=todoproj:server node ./bin/www"
 	},
 	"dependencies": {
 		"bcryptjs": "^2.3.0",
