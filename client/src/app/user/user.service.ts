@@ -6,7 +6,7 @@ import { Task } from '../task';
 export interface User {
   _id: string;
   email: string;
-  tasks: [Task];
+  tasks: Task[];
 }
 
 // export interface LoginCallback {
@@ -17,6 +17,7 @@ export interface TokenRes {
   success: boolean;
   err?: string;
   token: string;
+  user: User;
 }
 
 export interface UserRes {
@@ -41,8 +42,10 @@ export class UserService {
     return this.http.post("/api/users/auth", { email, password}, this.jsonHeader())
       .map((res: Response) => {
         let body = res.json();
+        console.log('user service login:', body);
         if (body.success) {
           this.token = body.token;
+          this.user = body.user;
         }
         return body;
       });
@@ -54,6 +57,7 @@ export class UserService {
         let body = res.json();
         if (body.success) {
           this.token = body.token;
+          this.user = body.user;
         }
         return body;
       });

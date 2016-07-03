@@ -1,4 +1,5 @@
 <div class="signup">
+  <button type="button" class="btn submit" (click)="signInModal.open()">Modal Test</button>
   <h2>Sign up:</h2>
   <form>
     <div class="form-group">
@@ -13,8 +14,19 @@
       <label for="password-confirm">Confirm Password</label>
       <input [(ngModel)]="passConfirm" name="password-confirm" type="password" class="form-control" id="password-confirm" placeholder="Confirm Password">
     </div>
-    <button *ngIf="!signUpMode" type="button" class="btn submit" [disabled]="!canSubmit" (click)="signIn()">Login</button>
+    <button *ngIf="!signUpMode" type="button" class="btn submit" [disabled]="!canSubmit" (click)="signIn()">Login/Signup</button>
     <button *ngIf="signUpMode" type="button" class="btn submit" [disabled]="!canSubmit" (click)="signUp()">Signup</button>
     <button *ngIf="signUpMode" type="button" class="btn cancel pull-right" (click)="cancelSignUp()">Cancel</button>
   </form>
+  <modal #signInModal [keyboard]="true" [backdrop]="true">
+    <modal-header [show-close]="true">
+      <h4 class="modal-title">Sign in</h4>
+    </modal-header>
+    <modal-body>
+      <div class="form-group">
+        <label for="test">Test</label>
+        <input type="text" class="form-control" name="test" required>
+      </div>
+    </modal-body>
+  </modal>
 </div>

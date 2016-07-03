@@ -25,7 +25,7 @@ export function main(initialHmrState?: any): Promise<any> {
   return bootstrap(App, [
     ...PLATFORM_PROVIDERS,
     ...ENV_PROVIDERS,
-    ...APP_PROVIDERS,
+    ...APP_PROVIDERS
   ])
   .then(decorateComponentRef)
   .catch(err => console.error(err));

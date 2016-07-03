@@ -6,7 +6,7 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 var userSchema = new mongoose.Schema({
   email: {
     type: String,
-    match: /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/,
+    match: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     required: [true, "Email required."]
   },
   password: {
@@ -38,6 +38,12 @@ userSchema.pre('save', function(next) {
 
 userSchema.methods.validPassword = function(password) {
   return bcrypt.compareSync(password, this.password);
+};
+
+userSchema.options.toObject = {
+  transform: (doc, ret, opts) => {
+    delete ret.password;
+  }
 };
 
 export const User = mongoose.model('User', userSchema);

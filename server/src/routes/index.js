@@ -2,16 +2,18 @@ import { Router } from 'express';
 import jwt from 'jsonwebtoken';
 import config from 'config';
 import { User } from '../db';
-import { makeUserRoutes } from './users';
-// import { makeTaskRoutes } from './tasks';
+import { UserRoutes } from './users';
+import { TaskRoutes } from './tasks';
 
 export function makeRoutes(passport) {
   let router = Router();
   
-  let userRoutes = makeUserRoutes(passport);
-  // let taskRoutes = makeTaskRoutes();
+  // let userRoutes = makeUserRoutes(passport);
+  let userRoutes = new UserRoutes(passport);
+  let taskRoutes = new TaskRoutes(passport);
+  
   router.use('/users', userRoutes.unprotected);
-  // router.use('/tasks', taskRoutes.unprotected);
+  router.use('/tasks', taskRoutes.unprotected);
   
   // TODO: Implement JWT authentication
   router.use((req, res, next) => {
@@ -26,7 +28,7 @@ export function makeRoutes(passport) {
           User.findById(decoded.id)
             .catch((err) => res.json({ success: false, err }))
             .then((user) => {
-              req.user = user._id;
+              req.user = user;
               next();
             });
         }
@@ -35,7 +37,7 @@ export function makeRoutes(passport) {
   });
   
   router.use('/users', userRoutes.protected);
-  // router.use('/tasks', taskRoutes.protected);
+  router.use('/tasks', taskRoutes.protected);
   
   return router;
 }

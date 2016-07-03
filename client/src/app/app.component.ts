@@ -2,6 +2,7 @@
  * Angular 2 decorators and services
  */
 import { Component, ViewEncapsulation } from '@angular/core';
+import { AppService } from './app.service';
 
 /*
  * App Component
@@ -11,23 +12,23 @@ import { Component, ViewEncapsulation } from '@angular/core';
   selector: 'app',
   encapsulation: ViewEncapsulation.None,
   styles: [
-    require('bootstrap/dist/css/bootstrap.min.css'),
+    // require('bootstrap/dist/css/bootstrap.min.css'),
     require('./app.scss'),
-    require('awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css')
+    // require('awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css')
   ],
   template: require('./app.html')
 })
 export class App {
 
   title: string = 'ToDoList for the Red Bees';
+  appService: AppService;
 
-  constructor() {
-    
+  constructor(appService: AppService) {
+    this.appService = appService;
   }
 
   ngOnInit() {
   }
-
 }
 
 /*

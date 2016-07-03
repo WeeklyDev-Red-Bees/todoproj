@@ -25,6 +25,9 @@ import 'node-uuid';
 
 import 'compass-sass-mixins/lib/_compass.sass';
 import 'bootstrap-sass/assets/stylesheets/_bootstrap.scss';
+import 'jquery';
+import 'bootstrap-sass/assets/javascripts/bootstrap.min.js';
+import 'ng2-bs3-modal';
 
 
 if ('production' === ENV) {

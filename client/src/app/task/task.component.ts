@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, Directive, ElementRef, HostListener } from '@angular/core';
-import { Task } from './task.service';
+// import { Task } from './task.service';
+import { Task } from '../app.service';
 
 // @Directive({
 //   selector: '[setHover]',
@@ -23,11 +24,6 @@ import { Task } from './task.service';
 //   }
 // }
 
-interface FocusStyle {
-  maxHeight: string;
-  transition: string;
-}
-
 @Component({
   selector: 'li.task',
   template: require('./task.html'),
@@ -41,14 +37,14 @@ export class TaskComponent {
   title: string = "";
   desc: string = "";
   
-  colors: string[] = [
-    'red',
-    'orange',
-    'yellow',
-    'green',
-    'blue',
-    'purple'
-  ];
+  // colors: string[] = [
+  //   'red',
+  //   'orange',
+  //   'yellow',
+  //   'green',
+  //   'blue',
+  //   'purple'
+  // ];
   
   // focused: FocusStyle = {
   //   maxHeight: '0',
@@ -80,9 +76,9 @@ export class TaskComponent {
   deleteTask() {
     // TODO: Implement delete
     
-    if (this.task.example) {
+    // if (this.task.example) {
       // TODO: delete
-    }
+    // }
     
     console.log('task:', this.task);
   }

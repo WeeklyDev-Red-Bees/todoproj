@@ -13,11 +13,11 @@ var taskSchema = new mongoose.Schema({
     type: String,
     required: [true, 'A task requires a description.']
   },
-  priority: {
-    type: String,
-    enum: ['high', 'moderate', 'low'],
-    default: 'moderate'
-  },
+  // priority: {
+  //   type: String,
+  //   enum: ['high', 'moderate', 'low'],
+  //   default: 'moderate'
+  // },
   color: {
     type: String,
     enum: [
@@ -40,23 +40,20 @@ var taskSchema = new mongoose.Schema({
   }
 }, { timestamps: true });
 
-taskSchema.post('save', function(doc, next) {
-  let userID = doc.user;
-  // if (typeof doc.user === "string") {
-  //   userID = doc.user;
-  // } else {
-  //   userID = doc.user._id;
-  // }
-  console.log(userID);
-  console.log(typeof doc.user);
-  User.findOneAndUpdate({ '_id': userID }, {
-    "$push": {
-      "tasks": doc
-    }
-  }).then((user) => {
-    console.log('user with new task:', user);
-    next();
-  });
-});
+// taskSchema.post('save', function(doc, next) {
+//   if (doc.isNew()) {
+//     let userID = doc.user;
+//     console.log(userID);
+//     console.log(typeof doc.user);
+//     User.findOneAndUpdate({ '_id': userID }, {
+//       "$push": {
+//         "tasks": doc
+//       }
+//     }).then((user) => {
+//       console.log('user with new task:', user);
+//       next();
+//     });
+//   }
+// });
 
 export const Task = mongoose.model('Task', taskSchema);

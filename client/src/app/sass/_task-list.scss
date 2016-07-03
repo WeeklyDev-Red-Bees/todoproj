@@ -35,26 +35,47 @@
 	}
 }
 
+$taskColors: (
+	red: $red,
+	orange: $orange,
+	yellow: $yellow,
+	blue: $blue,
+	green: $green,
+	purple: $purple
+);
+
 .task-color {
 	width: 10px;
-	&.red {
-		background: $red;
+	
+}
+
+.task-color {
+	width: 10px;
+	
+	@each $name, $color in $taskColors {
+		&.#{$name} {
+			background: $color;
+		}
 	}
-	&.orange {
-		background: $orange;
-	}
-	&.yellow {
-		background: $yellow;
-	}
-	&.blue {
-		background: $blue;
-	}
-	&.green {
-		background: $green;
-	}
-	&.purple {
-		background: $purple;
-	}
+	
+	// &.red {
+	// 	background: $red;
+	// }
+	// &.orange {
+	// 	background: $orange;
+	// }
+	// &.yellow {
+	// 	background: $yellow;
+	// }
+	// &.blue {
+	// 	background: $blue;
+	// }
+	// &.green {
+	// 	background: $green;
+	// }
+	// &.purple {
+	// 	background: $purple;
+	// }
 }
 
 .ui-panel {
@@ -65,36 +86,45 @@
 		font-size: 22px;
 	}
 	.icon-star {
-		&.red {
-			&::before {
-				color: $red;
+		
+		@each $name, $color in $taskColors {
+			&.#{$name} {
+				&::before {
+					color: $color;
+				}
 			}
 		}
-		&.orange {
-			&::before {
-				color: $orange;
-			}
-		}
-		&.yellow {
-			&::before {
-				color: $yellow;
-			}
-		}
-		&.blue {
-			&::before {
-				color: $blue;
-			}
-		}
-		&.green {
-			&::before {
-				color: $green;
-			}
-		}
-		&.purple {
-			&::before {
-				color: $purple;
-			}
-		}
+		
+		// &.red {
+		// 	&::before {
+		// 		color: $red;
+		// 	}
+		// }
+		// &.orange {
+		// 	&::before {
+		// 		color: $orange;
+		// 	}
+		// }
+		// &.yellow {
+		// 	&::before {
+		// 		color: $yellow;
+		// 	}
+		// }
+		// &.blue {
+		// 	&::before {
+		// 		color: $blue;
+		// 	}
+		// }
+		// &.green {
+		// 	&::before {
+		// 		color: $green;
+		// 	}
+		// }
+		// &.purple {
+		// 	&::before {
+		// 		color: $purple;
+		// 	}
+		// }
 	}
 }
 

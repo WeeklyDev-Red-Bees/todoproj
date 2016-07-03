@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import config from 'config';
 import { User, Task } from '../db';
 
-class UserRoutes {
+export class UserRoutes {
   constructor(passport) {
     this.passport = passport;
     this.unprotectedRoutes();
@@ -13,56 +13,22 @@ class UserRoutes {
   unprotectedRoutes() {
     let router = Router();
     
-    // router.post('/auth', (req, res, next) => {
-    //   console.log(req.body);
-    //   this.passport.authenticate('local-login', (err, user, info) => {
-    //     if (err) {
-    //       return next(err);
-    //     } else if (!user) {
-    //       return res.json({ success: false, err: "No user." });
-    //     } else {
-    //       let token = jwt.sign({ id: user._id }, config.get('secrets.jwt'));
-    //       res.json({ success: true, token });
-    //     }
-    //   }, { session: false })(req, res, next);
-    // });
-    
-    // router.post('/', (req, res, next) => {
-    //   this.passport.authenticate('local-signup', (err, user, info) => {
-    //     console.log(user);
-    //     if (err) {
-    //       console.error(err);
-    //       return next(err);
-    //     } else if (!user) {
-    //       console.log('no user');
-    //       return res.json({ success: false, err: "User could not be created." });
-    //     } else {
-    //       console.log('encoding token');
-    //       let token = jwt.sign({ id: user._id }, config.get('secrets.jwt'), {
-    //         expiresIn: '1 day'
-    //       });
-    //       console.log(token);
-    //       res.json({ success: true, token });
-    //     }
-    //   }, { session: false })(req, res, next);
-    // });
-    
     router.post('/auth', (req, res) => {
       console.log('auth:', req.body);
-      User.findOne({ email: req.body.email })
+      User.findOne({ email: req.body.email }).populate('tasks')
         .catch((err) => res.json({ success: false, err }))
-        .then((foundUser) => {
+        .then((user) => {
           console.log('auth cb');
-          if (foundUser) {
+          if (user) {
             console.log('found user');
-            console.log(foundUser);
-            if (!foundUser.validPassword(req.body.password)) {
+            console.log(user);
+            if (!user.validPassword(req.body.password)) {
               console.log('invalid pass');
               res.json({ success: false, err: "EPASS" });
             } else {
               console.log('sending token');
-              let token = jwt.sign({ id: foundUser._id }, config.get('secrets.jwt'));
-              res.json({ success: true, token });
+              let token = jwt.sign({ id: user._id }, config.get('secrets.jwt'));
+              res.json({ success: true, token, user: user.toObject() });
             }
           } else {
             console.log('user not found');
@@ -89,7 +55,7 @@ class UserRoutes {
               .then((newUser) => {
                 // res.json({ success: true, user: newUser });
                 let token = jwt.sign({ id: newUser._id }, config.get('secrets.jwt'));
-                res.json({ success: true, token });
+                res.json({ success: true, token, user: newUser.toObject() });
               });
           }
         });
@@ -103,7 +69,7 @@ class UserRoutes {
     
     router.get('/', (req, res) => {
       // console.log(req);
-      User.findById(req.user).populate('tasks')
+      User.findById(req.user._id).populate('tasks')
         .catch((err) => res.json({ success: false, err }))
         .then((user) => {
           user = user.toObject();
@@ -112,26 +78,26 @@ class UserRoutes {
         });
     });
     
-    router.post('/tasks', (req, res) => {
-      // console.log(req.body);
-      User.findById(req.user)
-        .catch((err) => res.json({ success: false, err }))
-        .then((user) => {
-          let task = new Task({
-            title: req.body.title,
-            desc: req.body.desc,
-            priority: req.body.priority,
-            color: req.body.color,
-            user: req.user
-          });
+    // router.post('/tasks', (req, res) => {
+    //   // console.log(req.body);
+    //   User.findById(req.user)
+    //     .catch((err) => res.json({ success: false, err }))
+    //     .then((user) => {
+    //       let task = new Task({
+    //         title: req.body.title,
+    //         desc: req.body.desc,
+    //         priority: req.body.priority,
+    //         color: req.body.color,
+    //         user: req.user
+    //       });
           
-          task.save()
-            .catch((err) => res.json({ success: false, err }))
-            .then((_task) => {
-              res.json({ success: true, task: _task });
-            });
-        });
-    });
+    //       task.save()
+    //         .catch((err) => res.json({ success: false, err }))
+    //         .then((_task) => {
+    //           res.json({ success: true, task: _task });
+    //         });
+    //     });
+    // });
     
     this.protected = router;
   }

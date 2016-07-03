@@ -6,7 +6,7 @@
 				  <signup (onSignup)="signIn($event)"></signup>
 				</div>
 				<!--<task-list></task-list>-->
-				<ul class="task-list">
+				<ul *ngIf="user" class="task-list">
 				  <li class="task" *ngFor="let task of tasks let idx=index"
 					[task]="task" [idx]="idx"
 					(onClick)="setChecked($event)"></li>
