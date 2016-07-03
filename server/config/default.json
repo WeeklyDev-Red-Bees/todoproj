@@ -7,6 +7,9 @@
     "name": "todoproj",
     "port": "27017"
   },
+  "http": {
+    "port": 3000
+  },
   "auth": {
     "facebook": {
       "clientID": "1327101067319657",

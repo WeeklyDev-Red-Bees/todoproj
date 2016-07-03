@@ -6,14 +6,21 @@
 
 // var app = require('../app');
 var app = require('../dist').initializeServer();
+var config = require('config');
 var debug = require('debug')('todoproj:server');
 var http = require('http');
+var path = require('path');
 
 /**
  * Get port from environment and store in Express.
  */
 
+// var port = normalizePort(process.env.PORT || '4000');
 var port = normalizePort(process.env.PORT || '4000');
+if (config.has('http.port')) {
+	debug("Using port set at '"+path.resolve(__dirname, '../config/default.json')+"'");
+	port = config.get('http.port');
+}
 app.set('port', port);
 
 /**
