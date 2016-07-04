@@ -1,53 +1,78 @@
 /*BUTTONS*/
-
+$colorMap: (
+	facebook: #3b5998,
+	twitter: #55acee,
+	gplus: #dd4b39,
+	github: #6e5494,
+	submit: $green,
+	cancel: $red
+);
+$colorNames: facebook, twitter, gplus, github, submit, cancel;
+$oddNames: facebook, submit, cancel;
+@function darken-amount($name) {
+	$amount: 10%;
+	@if ($name == facebook or $name == submit or $name == cancel) {
+    $amount: 5%;
+  }
+	@return darken(map-get($colorMap, $name), $amount);
+}
 .btn {
 	cursor: pointer;
 	@include transition(background .3s linear);
 	.icon {
 		display: block
 	}
-	&.facebook {
-		background: #3b5998;
-		&:hover {
-			background: darken(#3b5998, 5%);
-			color: #fff;
+	@each $name, $color in $colorMap {
+		&.#{$name} {
+			background: $color;
+			&:hover {
+				background: darken-amount($name);
+				color: #fff;
+			}
 		}
 	}
-	&.twitter {
-		background: #55acee;
-		&:hover {
-			background: darken(#55acee, 10%);
-			color: #fff;
-		}
-	}
-	&.gplus {
-		background: #dd4b39;
-		&:hover {
-			background: darken(#dd4b39, 10%);
-			color: #fff;
-		}
-	}
-	&.github {
-		background: #6e5494;
-		&:hover {
-			background: darken(#6e5494, 10%);
-			color: #fff;
-		}
-	}
-	&.submit {
-		background: $green;
-		&:hover {
-			background: darken($green, 5%);
-			color: #fff;
-		}
-	}
+	// &.facebook {
+	// 	background: #3b5998;
+	// 	&:hover {
+	// 		background: darken(#3b5998, 5%);
+	// 		color: #fff;
+	// 	}
+	// }
+	// &.twitter {
+	// 	background: #55acee;
+	// 	&:hover {
+	// 		background: darken(#55acee, 10%);
+	// 		color: #fff;
+	// 	}
+	// }
+	// &.gplus {
+	// 	background: #dd4b39;
+	// 	&:hover {
+	// 		background: darken(#dd4b39, 10%);
+	// 		color: #fff;
+	// 	}
+	// }
+	// &.github {
+	// 	background: #6e5494;
+	// 	&:hover {
+	// 		background: darken(#6e5494, 10%);
+	// 		color: #fff;
+	// 	}
+	// }
+	// &.submit {
+	// 	background: $green;
+	// 	&:hover {
+	// 		background: darken($green, 5%);
+	// 		color: #fff;
+	// 	}
+	// }
 	
-	// Please correct this if its wrong
-	&.cancel {
-		background: $red;
-		&:hover {
-			background: darken($green, 5%);
-			color: #fff;
-		}
-	}
+	// // Please correct this if its wrong
+	// &.cancel {
+	// 	background: $red;
+	// 	&:hover {
+	// 		background: darken($green, 5%);
+	// 		color: #fff;
+	// 	}
+	// }
 }

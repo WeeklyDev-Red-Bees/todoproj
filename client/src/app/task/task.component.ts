@@ -1,50 +1,34 @@
 import { Component, Input, Output, EventEmitter, Directive, ElementRef, HostListener } from '@angular/core';
-// import { Task } from './task.service';
-import { Task } from '../app.service';
+import { MODAL_DIRECTIVES } from 'ng2-bs3-modal/ng2-bs3-modal';
+import { AppService, Task, UserRes } from '../app.service';
 
-// @Directive({
-//   selector: '[setHover]',
-//   host: {
-//     '(focus)': 'setFocus(true)',
-//     '(blur)': 'setFocus(false)',
-//     '(mouseenter)': 'setFocus(true)',
-//     '(mouseleave)': 'setFocus(false)'
-//   }
-// })
-// export class TaskDescDirective {
-//   private el: HTMLElement;
-  
-//   constructor(el: ElementRef) {
-//     this.el = el.nativeElement;
-//   }
-  
-//   private setFocus(focused: boolean) {
-//     // this.el.parentElement.style.maxHeight = focused ? '8em' : '0';
-//     // this.el.parentElement.style.transform = `translate(${ focused ? 0 : '0, 2em' }`;
-//   }
-// }
+declare var jQuery: any;
 
 @Component({
   selector: 'li.task',
   template: require('./task.html'),
-  // directives: [TaskDescDirective]
+  styles: [require('./task.scss')],
+  directives: [MODAL_DIRECTIVES],
 })
 export class TaskComponent {
   @Input('task') task: Task;
   @Input('idx') idx;
-  @Output() onClick = new EventEmitter();
+  // @Output() onClick = new EventEmitter();
+  appService: AppService
   
   title: string = "";
   desc: string = "";
   
-  // colors: string[] = [
-  //   'red',
-  //   'orange',
-  //   'yellow',
-  //   'green',
-  //   'blue',
-  //   'purple'
-  // ];
+  colors: string[] = [
+    'red',
+    'orange',
+    'yellow',
+    'green',
+    'blue',
+    'purple'
+  ];
+  
+  extended: boolean = true;
   
   // focused: FocusStyle = {
   //   maxHeight: '0',
@@ -52,8 +36,8 @@ export class TaskComponent {
   // };
   focused: boolean = false;
 
-  constructor() {
-    
+  constructor(appService: AppService) {
+    this.appService = appService;
   }
   
   ngOnInit() {
@@ -62,14 +46,23 @@ export class TaskComponent {
   }
 
   checkClick() {
-    this.onClick.emit(this.idx);
-    
+    // this.onClick.emit(this.idx);
+    this.task.completed = !this.task.completed;
+    // this.appService.editTask(this.task).subscribe((res: UserRes) => {
+    //   if (res.success) {
+    //     let task = res.user.tasks.find((t) => t._id === this.task._id);
+    //     if (task) {
+    //       this.task = task;
+    //     }
+    //   }
+    // });
+    this.updateTask();
     // TODO: Directly change and save completed value
   }
   
   setColor(color: string) {
     this.task.color = color;
-    
+    this.updateTask();
     // TODO: Save color change
   }
   
@@ -79,22 +72,18 @@ export class TaskComponent {
     // if (this.task.example) {
       // TODO: delete
     // }
-    
+    this.appService
     console.log('task:', this.task);
   }
   
-  setFocus(focused: boolean) {
-    // if (focused) {
-    //   this.focused = {
-    //     maxHeight: '8em',
-    //     transition: 'transform(0)'
-    //   };
-    // } else {
-    //   this.focused = {
-    //     maxHeight: '0',
-    //     transition: 'transform(0, 2em)'
-    //   };
-    // }
-    this.focused = focused;
+  updateTask(): void {
+    this.appService.editTask(this.task).subscribe((res: UserRes) => {
+      if (res.success) {
+        let task = res.user.tasks.find((t) => t._id === this.task._id);
+        if (task) {
+          this.task = task;
+        }
+      }
+    });
   }
 }

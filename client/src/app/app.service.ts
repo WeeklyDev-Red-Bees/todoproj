@@ -7,13 +7,17 @@ export class AppService {
   private http: Http;
   private _user: User;
   private _token: string;
-  private _tasks: Task[];
+  // private _tasks: Task[];
   userEmitter: EventEmitter<User> = new EventEmitter<User>();
   tokenEmitter: EventEmitter<string> = new EventEmitter<string>();
-  tasksEmitter: EventEmitter<Task[]> = new EventEmitter<Task[]>();
+  // tasksEmitter: EventEmitter<Task[]> = new EventEmitter<Task[]>();
   
   constructor(http: Http) {
     this.http = http;
+    
+    // this.userEmitter.subscribe((user: User) => {
+    //   this.tasks = user.tasks;
+    // });
   }
   
   login(creds: Creds): Observable<TokenRes> {
@@ -29,20 +33,43 @@ export class AppService {
     this.user = null;
   }
   
-  editTask(task: Task): Observable<Task> {
-    return this.http.put(`/api/tasks/${task._id}`, task.getUpdate(), this.authHeader(this.jsonHeader()))
+  addTask(task: Task): Observable<UserRes> {
+    return this.http.post('/api/tasks', task, this.authHeader(this.jsonHeader()))
       .map((res: Response) => {
         let body = res.json();
+        if (body.success) {
+          this.user = new User(<IUser>body.user);
+        }
         return body;
       });
   }
   
-  addTask(task: Task): Observable<Task> {
-    return this.http.post('/api/tasks', task, this.authHeader(this.jsonHeader()))
+  editTask(task: Task): Observable<UserRes> {
+    return this.http.put(`/api/tasks/${task._id}`, task.getUpdate(), this.authHeader(this.jsonHeader()))
       .map((res: Response) => {
         let body = res.json();
+        if (body.success) {
+          this.user = new User(<IUser>body.user);
+        }
         return body;
       });
+  }
+  
+  deleteTask(task: Task): Observable<UserRes> {
+    if (!task.isNew) {
+      return this.http.delete(`/api/tasks/${task._id}`, this.authHeader(this.jsonHeader()))
+      .map((res: Response) => {
+        let body = res.json();
+        // let taskIDx = this.tasks.findIndex((v: Task) => v._id === task._id);
+        // if (taskIDx !== -1) this.tasks.splice(taskIDx, 1);
+        if (body.success) {
+          this.user = new User(<IUser>body.user);
+        }
+        return body;
+      });
+    } else {
+      return null;
+    }
   }
   
   private auth(creds: Creds, login: boolean): Observable<TokenRes> {
@@ -99,14 +126,14 @@ export class AppService {
     this.tokenEmitter.emit(this._token);
   }
   
-  get tasks(): Task[] {
-    return this._tasks;
-  }
+  // get tasks(): Task[] {
+  //   return this._tasks;
+  // }
   
-  set tasks(v: Task[]) {
-    this._tasks = v;
-    this.tasksEmitter.emit(this._tasks);
-  }
+  // set tasks(v: Task[]) {
+  //   this._tasks = v;
+  //   this.tasksEmitter.emit(this._tasks);
+  // }
 }
 
 export interface IUser {
@@ -177,6 +204,13 @@ export class Task implements ITask {
   
   get _id(): string {
     return this.__id;
+  }
+  
+  get isNew(): boolean {
+    if (this.__id) {
+      return false;
+    }
+    return true;
   }
   
   getUpdate(): TaskUpdate {

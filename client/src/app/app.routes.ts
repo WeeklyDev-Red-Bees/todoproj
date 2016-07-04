@@ -1,13 +1,12 @@
 import { RouterConfig } from '@angular/router';
 import { HomeComponent } from './home';
-import { NoContent } from './no-content';
 
 export const routes: RouterConfig = [
   { path: '',      component: HomeComponent },
   { path: 'home',  component: HomeComponent },
   // make sure you match the component type string to the require in asyncRoutes
-  { path: 'about', component: 'About' },
-  { path: '**',    component: NoContent },
+  // { path: 'about', component: 'About' },
+  // { path: '**',    component: NoContent },
 ];
 
 // Async load a component using Webpack's require with es6-promise-loader and webpack `require`

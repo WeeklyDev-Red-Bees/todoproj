@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { SignupComponent } from '../signup';
-import { LoginComponent } from '../login';
-// import { TaskListComponent } from '../taskList';
 import { TaskComponent } from '../task';
 // import { UserService, User, TokenRes, UserRes } from '../user';
 import { AppService, User, TokenRes, UserRes, Task } from '../app.service';
@@ -11,14 +9,14 @@ const uuid = require('node-uuid');
 
 @Component({
   selector: 'home',
-  directives: [SignupComponent, LoginComponent, TaskComponent],
+  directives: [SignupComponent, TaskComponent],
   // styles: [ require('./home.scss') ],
   template: require('./home.html')
 })
 export class HomeComponent {
   appService: AppService;
   user: User;
-  tasks: Task[];
+  tasks: Task[] = [];
   
   constructor(appService: AppService) {
     this.appService = appService;
@@ -48,7 +46,14 @@ export class HomeComponent {
     this.appService.userEmitter.subscribe((user: User) => {
       this.user = user;
       this.tasks = this.user.tasks;
+      // if (this.tasks.length !== this.user.tasks.length) {
+      //   this.tasks = this.user.tasks;
+      // }
     });
+    
+    // this.appService.tasksEmitter.subscribe((tasks: Task[]) => {
+    //   this.tasks = tasks;
+    // });
   }
   
   setChecked(idx: number): void {
