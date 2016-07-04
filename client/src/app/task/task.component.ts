@@ -15,8 +15,8 @@ export class TaskComponent {
   // @Output() onClick = new EventEmitter();
   appService: AppService
   
-  title: string = "";
-  desc: string = "";
+  // title: string = "";
+  // desc: string = "";
   
   descSelector: string;
   
@@ -42,8 +42,8 @@ export class TaskComponent {
   }
   
   ngOnInit() {
-    this.title = this.task.title;
-    this.desc = this.task.desc;
+    // this.title = this.task.title;
+    // this.desc = this.task.desc;
     this.descSelector = `#task-${this.idx} .desc`;
     jQuery(this.descSelector).collapse({ toggle: false });
   }
@@ -75,20 +75,39 @@ export class TaskComponent {
     // if (this.task.example) {
       // TODO: delete
     // }
-    this.appService
-    console.log('task:', this.task);
+    this.appService.deleteTask(this.task).subscribe((res: UserRes) => {
+      console.log('user res:', res);
+    });
+    // console.log('task:', this.task);
   }
   
   updateTask(): void {
     this.appService.editTask(this.task).subscribe((res: UserRes) => {
       if (res.success) {
-        let task = res.user.tasks.find((t) => t._id === this.task._id);
+        // let task = res.user.tasks.find((t) => t._id === this.task._id);
+        let task = this.appService.user.tasks.find((t) => t._id === this.task._id);
         if (task) {
           this.task = task;
         }
       }
     });
   }
+  
+  // get title(): string {
+  //   return this.task.title;
+  // }
+  
+  // set title(v: string) {
+  //   this.task.title = v;
+  // }
+  
+  // get desc(): string {
+  //   return this.task.desc;
+  // }
+  
+  // set desc(v: string) {
+  //   this.task.desc = v;
+  // }
   
   extend(): void {
     // TODO: Extend collapsed .desc

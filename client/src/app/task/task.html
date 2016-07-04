@@ -5,18 +5,27 @@
 	</div>
 	<div class="task-info">
 	<!--<div class="task-info" (mouseenter)="setFocus(true)" (mouseleave)="setFocus(false)" [class.focused]="focused">-->
-		<div *ngIf="idx !== 0" class="title">
-			{{ task.title }}
+		<!--<div *ngIf="idx !== 0" class="title">-->
+		<!--	{{ task.title }}-->
+		<!--</div>-->
+		<!--<input *ngIf="idx === 0" [(ngModel)]="title" name="title" type="text" class="title">-->
+		<div class="input-group">
+			<input [(ngModel)]="task.title" name="title" type="text" class="form-control title" placeholder="Title">
+			<span class="input-group-btn" *ngIf="task.titleMod">
+				<button class="btn submit" type="button" (click)="updateTask()">
+					<i class="icon icon-check"></i>
+				</button>
+			</span>
 		</div>
-		<input *ngIf="idx === 0" [(ngModel)]="title" name="title" type="text" class="title">
 		<!--<input (focus)="setFocus(true)" (blur)="setFocus(false)" *ngIf="idx === 0" [(ngModel)]="title" name="title" type="text" class="title">-->
 		<i class="icon pull-right" [class.icon-angle-up]="!extended" [class.icon-angle-down]="extended" (click)="extend()"></i>
 		<div class="desc collapse">
 		<!--<div class="desc"-->
 		<!--	[style.max-height]="focused.maxHeight"-->
 		<!--	[style.transition]="focused.transition">-->
-			<p *ngIf="idx !== 0">{{ task.desc }}</p>
-			<input *ngIf="idx === 0" [(ngModel)]="desc" name="desc" type="text">
+			<!--<p *ngIf="idx !== 0">{{ task.desc }}</p>-->
+			<!--<input *ngIf="idx === 0" [(ngModel)]="desc" name="desc" type="text">-->
+			<input [(ngModel)]="task.desc" name="desc" type="text">
 			<!--<input (focus)="setFocus(true)" (blur)="setFocus(false)" *ngIf="idx === 0" [(ngModel)]="desc" name="desc" type="text">-->
 			<div class="ui-panel">
 				<i *ngFor="let color of colors" class=" icon icon-star {{ color }}" (click)="setColor(color)"></i><i class="icon icon-trash" (click)="deleteTaskModal.open('sm')"></i>

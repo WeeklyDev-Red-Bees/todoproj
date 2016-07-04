@@ -40,6 +40,21 @@ var taskSchema = new mongoose.Schema({
   }
 }, { timestamps: true });
 
+taskSchema.pre('remove', function(next) {
+  let tasks = this.user.tasks;
+  tasks.splice(tasks.indexOf(this._id), 1);
+  this.model('User').findByIdAndUpdate(this.user._id, {
+    '$set': {
+      tasks
+    }
+  }).catch((err) => next(err))
+    .then((newUser) => {
+      console.log('new user:', newUser);
+      next();
+    });
+  // next();
+});
+
 // taskSchema.post('save', function(doc, next) {
 //   if (doc.isNew()) {
 //     let userID = doc.user;

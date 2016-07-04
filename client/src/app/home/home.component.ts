@@ -45,10 +45,10 @@ export class HomeComponent {
     
     this.appService.userEmitter.subscribe((user: User) => {
       this.user = user;
-      this.tasks = this.user.tasks;
-      // if (this.tasks.length !== this.user.tasks.length) {
-      //   this.tasks = this.user.tasks;
-      // }
+      // this.tasks = this.user.tasks;
+      if (this.tasks.length === 0 || this.tasks.length !== this.user.tasks.length) {
+        this.tasks = this.user.tasks;
+      }
     });
     
     // this.appService.tasksEmitter.subscribe((tasks: Task[]) => {

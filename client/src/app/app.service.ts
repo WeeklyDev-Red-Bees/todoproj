@@ -57,16 +57,16 @@ export class AppService {
   
   deleteTask(task: Task): Observable<UserRes> {
     if (!task.isNew) {
-      return this.http.delete(`/api/tasks/${task._id}`, this.authHeader(this.jsonHeader()))
-      .map((res: Response) => {
-        let body = res.json();
-        // let taskIDx = this.tasks.findIndex((v: Task) => v._id === task._id);
-        // if (taskIDx !== -1) this.tasks.splice(taskIDx, 1);
-        if (body.success) {
-          this.user = new User(<IUser>body.user);
-        }
-        return body;
-      });
+      return this.http.delete(`/api/tasks/${task._id}`, this.authHeader())
+        .map((res: Response) => {
+          let body = res.json();
+          // let taskIDx = this.tasks.findIndex((v: Task) => v._id === task._id);
+          // if (taskIDx !== -1) this.tasks.splice(taskIDx, 1);
+          if (body.success) {
+            this.user = new User(<IUser>body.user);
+          }
+          return body;
+        });
     } else {
       return null;
     }
@@ -145,12 +145,14 @@ export interface IUser {
 export class User {
   _id: string;
   email: string;
-  tasks: Task[];
+  tasks: Task[] = [];
   
   constructor(user: IUser) {
     this._id = user._id;
     this.email = user.email;
-    this.tasks = user.tasks.map((t: ITask) => new Task(t));
+    if (user.tasks) {
+      this.tasks = user.tasks.map((t: ITask) => new Task(t));
+    }
   }
 }
 
@@ -211,6 +213,14 @@ export class Task implements ITask {
       return false;
     }
     return true;
+  }
+  
+  get titleMod(): boolean {
+    return this.title !== this._title;
+  }
+  
+  get descMod(): boolean {
+    return this.desc !== this._desc;
   }
   
   getUpdate(): TaskUpdate {
