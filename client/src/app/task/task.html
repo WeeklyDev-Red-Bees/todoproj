@@ -1,4 +1,4 @@
-<div class="task-container" [class.done]="task.completed">
+<div class="task-container" [class.done]="task.completed" id="task-{{ idx }}">
 	<div class="check">
 		<input [attr.id]="'checkbox-' + (idx + 1)" type="checkbox" [checked]="task.completed" (click)="checkClick()">
 		<label class="icon-check" [attr.for]="'checkbox-' + (idx + 1)"></label>
@@ -10,8 +10,8 @@
 		</div>
 		<input *ngIf="idx === 0" [(ngModel)]="title" name="title" type="text" class="title">
 		<!--<input (focus)="setFocus(true)" (blur)="setFocus(false)" *ngIf="idx === 0" [(ngModel)]="title" name="title" type="text" class="title">-->
-		<i class="icon" [class.icon-chevron-up]="extended" [class.icon-chevron-down]="!extended" (click)="extend()"></i>
-		<div class="desc">
+		<i class="icon pull-right" [class.icon-angle-up]="!extended" [class.icon-angle-down]="extended" (click)="extend()"></i>
+		<div class="desc collapse">
 		<!--<div class="desc"-->
 		<!--	[style.max-height]="focused.maxHeight"-->
 		<!--	[style.transition]="focused.transition">-->

@@ -7,7 +7,6 @@ declare var jQuery: any;
 @Component({
   selector: 'li.task',
   template: require('./task.html'),
-  styles: [require('./task.scss')],
   directives: [MODAL_DIRECTIVES],
 })
 export class TaskComponent {
@@ -19,6 +18,8 @@ export class TaskComponent {
   title: string = "";
   desc: string = "";
   
+  descSelector: string;
+  
   colors: string[] = [
     'red',
     'orange',
@@ -28,7 +29,7 @@ export class TaskComponent {
     'purple'
   ];
   
-  extended: boolean = true;
+  extended: boolean = false;
   
   // focused: FocusStyle = {
   //   maxHeight: '0',
@@ -43,6 +44,8 @@ export class TaskComponent {
   ngOnInit() {
     this.title = this.task.title;
     this.desc = this.task.desc;
+    this.descSelector = `#task-${this.idx} .desc`;
+    jQuery(this.descSelector).collapse({ toggle: false });
   }
 
   checkClick() {
@@ -85,5 +88,12 @@ export class TaskComponent {
         }
       }
     });
+  }
+  
+  extend(): void {
+    // TODO: Extend collapsed .desc
+    console.log(jQuery(this.descSelector));
+    jQuery(this.descSelector).collapse('toggle');
+    this.extended = !this.extended;
   }
 }

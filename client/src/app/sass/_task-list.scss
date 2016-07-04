@@ -146,16 +146,17 @@ $taskColors: (
 			background: darken($dk-gray, 5%);
 			cursor: text;
 		}
-		&:focus {
-			+ .desc {
-				max-height: 8em;
-				transform: translate(0);
-			}
-		}
+		// &:focus {
+		// 	+ .desc {
+		// 		max-height: 8em;
+		// 		transform: translate(0);
+		// 	}
+		// }
 	}
 	.desc {
-		max-height: 0;
-		transform: translate(0, 2em);
+		// max-height: 0;
+		// transform: translate(0, 2em);
+		max-height: 8em;
 		@include transition(max-height 0.3s linear 0s, transform 0.3s linear 0s);
 		p, input {
 			background: transparent;
@@ -167,10 +168,10 @@ $taskColors: (
 		}
 	}
 	&:hover {
-		.desc {
-			max-height: 8em;
-			transform: translate(0);
-		}
+		// .desc {
+		// 	max-height: 8em;
+		// 	transform: translate(0);
+		// }
 	}
 }
 
