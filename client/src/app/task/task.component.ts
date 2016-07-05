@@ -23,10 +23,10 @@ export class TaskComponent {
   colors: string[] = [
     'red',
     'orange',
-    'yellow',
+    // 'yellow',
     'green',
     'blue',
-    'purple'
+    // 'purple'
   ];
   
   extended: boolean = false;

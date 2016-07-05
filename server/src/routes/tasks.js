@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { User, Task } from '../db';
 
 export class TaskRoutes {
-  constructor(passport) {
+  constructor() {
     let router = Router();
     router.get('/debug', (req, res) => {
       Task.find()

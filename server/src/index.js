@@ -9,7 +9,6 @@ import passport from 'passport';
 import config from 'config';
 import mongoose from 'mongoose';
 
-import { configPassport } from './passport';
 import { initializeDatabase } from './db';
 import { makeRoutes } from './routes';
 
@@ -32,11 +31,11 @@ export function initializeServer() {
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(cookieParser());
   
-  app.use(passport.initialize());
+  // app.use(passport.initialize());
   
   app.use(express.static(path.join(__dirname, '..', '..', 'client', 'dist')));
   
-  app.use('/api', makeRoutes(configPassport(passport)));
+  app.use('/api', makeRoutes());
   
   app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '..', '..', 'client', 'dist', 'index.html'))

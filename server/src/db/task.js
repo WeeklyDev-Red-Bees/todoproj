@@ -22,11 +22,11 @@ var taskSchema = new mongoose.Schema({
     type: String,
     enum: [
       'red',
-      'yellow',
+      // 'yellow',
       'orange',
       'green',
       'blue',
-      'purple'
+      // 'purple'
     ],
     required: [true, 'A task requires a color.']
   },

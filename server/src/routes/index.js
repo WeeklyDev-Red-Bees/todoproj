@@ -5,12 +5,13 @@ import { User } from '../db';
 import { UserRoutes } from './users';
 import { TaskRoutes } from './tasks';
 
-export function makeRoutes(passport) {
+// export function makeRoutes(passport) {
+export function makeRoutes() {
   let router = Router();
   
   // let userRoutes = makeUserRoutes(passport);
-  let userRoutes = new UserRoutes(passport);
-  let taskRoutes = new TaskRoutes(passport);
+  let userRoutes = new UserRoutes();
+  let taskRoutes = new TaskRoutes();
   
   router.use('/users', userRoutes.unprotected);
   router.use('/tasks', taskRoutes.unprotected);

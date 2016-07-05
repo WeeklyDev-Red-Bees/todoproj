@@ -1,0 +1,14 @@
+<button class="btn submit" type="button" (click)="newTaskModal.open('sm')">New Task</button>
+
+<modal #newTaskModal [keyboard]="true" [backdrop]="true" (onClose)="saveTask()">
+  <modal-header [show-close]="true">
+    <h4 class="modal-title">New Task</h4>
+  </modal-header>
+  <modal-body>
+    <!-- Form goes here -->
+  </modal-body>
+  <modal-footer>
+    <button type="button" class="btn cancel" data-dismiss="modal" (click)="newTaskModal.dismiss()">Cancel</button>
+    <button type="button" class="btn submit" (click)="newTaskModal.close()">Create New Task</button>
+  </modal-footer>
+</modal>

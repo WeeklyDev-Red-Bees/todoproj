@@ -4,8 +4,7 @@ import config from 'config';
 import { User, Task } from '../db';
 
 export class UserRoutes {
-  constructor(passport) {
-    this.passport = passport;
+  constructor() {
     this.unprotectedRoutes();
     this.protectedRoutes();
   }
@@ -77,27 +76,6 @@ export class UserRoutes {
           res.json({ success: true, user });
         });
     });
-    
-    // router.post('/tasks', (req, res) => {
-    //   // console.log(req.body);
-    //   User.findById(req.user)
-    //     .catch((err) => res.json({ success: false, err }))
-    //     .then((user) => {
-    //       let task = new Task({
-    //         title: req.body.title,
-    //         desc: req.body.desc,
-    //         priority: req.body.priority,
-    //         color: req.body.color,
-    //         user: req.user
-    //       });
-          
-    //       task.save()
-    //         .catch((err) => res.json({ success: false, err }))
-    //         .then((_task) => {
-    //           res.json({ success: true, task: _task });
-    //         });
-    //     });
-    // });
     
     this.protected = router;
   }
