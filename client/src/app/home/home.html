@@ -6,11 +6,14 @@
 				  <signup (onSignup)="signIn($event)"></signup>
 				</div>
 				<!--<task-list></task-list>-->
-				<ul *ngIf="user" class="task-list">
-				  <li class="task" *ngFor="let task of tasks let idx=index"
-					[task]="task" [idx]="idx"
-					(onClick)="setChecked($event)"></li>
-				</ul>
+				<div class="content" *ngIf="user">
+					<newTask></newTask>
+					<ul *ngIf="user" class="task-list">
+					  <li class="task" *ngFor="let task of tasks let idx=index"
+						[task]="task" [idx]="idx"
+						(onClick)="setChecked($event)"></li>
+					</ul>
+				</div>
 		  </div>
 		</div>
   </div>
