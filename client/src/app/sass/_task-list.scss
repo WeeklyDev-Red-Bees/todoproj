@@ -57,25 +57,6 @@ $taskColors: (
 			background: $color;
 		}
 	}
-	
-	// &.red {
-	// 	background: $red;
-	// }
-	// &.orange {
-	// 	background: $orange;
-	// }
-	// &.yellow {
-	// 	background: $yellow;
-	// }
-	// &.blue {
-	// 	background: $blue;
-	// }
-	// &.green {
-	// 	background: $green;
-	// }
-	// &.purple {
-	// 	background: $purple;
-	// }
 }
 
 .ui-panel {
@@ -94,37 +75,6 @@ $taskColors: (
 				}
 			}
 		}
-		
-		// &.red {
-		// 	&::before {
-		// 		color: $red;
-		// 	}
-		// }
-		// &.orange {
-		// 	&::before {
-		// 		color: $orange;
-		// 	}
-		// }
-		// &.yellow {
-		// 	&::before {
-		// 		color: $yellow;
-		// 	}
-		// }
-		// &.blue {
-		// 	&::before {
-		// 		color: $blue;
-		// 	}
-		// }
-		// &.green {
-		// 	&::before {
-		// 		color: $green;
-		// 	}
-		// }
-		// &.purple {
-		// 	&::before {
-		// 		color: $purple;
-		// 	}
-		// }
 	}
 }
 
@@ -142,29 +92,14 @@ $taskColors: (
 		// Let ninja4826 know if any of this is wrong
 		background: transparent;
 		border: none;
-		&:hover {
-			background: darken($dk-gray, 5%);
-			cursor: text;
-		}
-		// &:focus {
-		// 	+ .desc {
-		// 		max-height: 8em;
-		// 		transform: translate(0);
-		// 	}
-		// }
 	}
 	.desc {
 		max-height: 0;
 		transform: translate(0, 2em);
-		// max-height: 8em;
 		@include transition(max-height 0.3s linear 0s, transform 0.3s linear 0s);
 		p, input {
 			background: transparent;
 			border: none;
-			&:hover {
-				background: darken($dk-gray, 5%);
-				cursor: text;
-			}
 		}
 	}
 	&:hover {
