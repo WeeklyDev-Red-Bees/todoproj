@@ -1,3 +1,4 @@
+// Modules needed
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -5,9 +6,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+// Routes needed
 var routes = require('./routes/index');
 
-
+// Define our app to use express
 var app = express();
 
 // view engine setup

@@ -1,3 +1,4 @@
+// Import the required modules.
 import fs from 'fs';
 import gulp from 'gulp';
 import gLP from 'gulp-load-plugins';
@@ -6,6 +7,7 @@ import runSeq from 'run-sequence';
 
 var plugins = gLP();
 
+// SRC path to dist path
 var paths = {
 	serverJS: {
 		'src': 'src/**/*.js',

@@ -1,4 +1,4 @@
-<button style="margin-left: 40%" class="btn submit" type="button" (click)="newTaskModal.open('sm')">New Task</button>
+<button style="margin-left: 40%; margin-bottom: 3%" class="btn submit" type="button" (click)="newTaskModal.open('sm')">New Task</button>
 
 <modal #newTaskModal [keyboard]="true" [backdrop]="true" (onClose)="saveTask()">
   <modal-header [show-close]="true">
@@ -14,10 +14,6 @@
         <label for="desc">Description</label>
         <input [(ngModel)]="desc" name="desc" type="text" class="form-control" id="desc" placeholder="I have to buy milk before sunday.">
       </div>
-      <!--<div class="form-group">-->
-      <!--  <label for="color">Colors</label>-->
-      <!--  <input name="color" type="text" class="form-control" id="color" placeholder="blue, yellow, red, green">-->
-      <!--</div>-->
     </form>
   </modal-body>
   <modal-footer>
