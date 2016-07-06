@@ -206,3 +206,11 @@ $taskColors: (
 		}
 	}
 }
+.modal-dialog {
+	&.modal-small {
+		width:1170px;
+	}
+	.modal-content {
+		background:$gray;
+	}
+}
