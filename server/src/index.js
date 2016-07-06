@@ -41,11 +41,12 @@ export function initializeServer() {
     res.sendFile(path.join(__dirname, '..', '..', 'client', 'dist', 'index.html'))
   })
   
-  // app.use((req, res, next) => {
-  //   let err = new Error("Not found");
-  //   err.status = 404;
-  //   next(err);
-  // });
+  app.use((req, res, next) => {
+    // let err = new Error("Not found");
+    // err.status = 404;
+    // next(err);
+    res.sendFile(path.join(__dirname, '..', '..', 'client', 'dist', 'index.html'));
+  });
   
   // if (app.get('env') === 'development') {
   //   app.use((error, req, res, next) => {

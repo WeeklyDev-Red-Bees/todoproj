@@ -7,7 +7,8 @@
 				</div>
 				<!--<task-list></task-list>-->
 				<div class="content" *ngIf="user">
-					<newTask></newTask>
+					<!--<newTask></newTask>-->
+					<button style="margin-left: 40%" class="btn submit" type="button" (click)="openNewTask()">New Task</button>
 					<ul *ngIf="user" class="task-list">
 					  <li class="task" *ngFor="let task of tasks let idx=index"
 						[task]="task" [idx]="idx"
@@ -18,3 +19,4 @@
 		</div>
   </div>
 </section>
+<editTask></editTask>

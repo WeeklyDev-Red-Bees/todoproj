@@ -34,7 +34,7 @@ export class AppService {
   }
   
   addTask(task: Task): Observable<UserRes> {
-    return this.http.post('/api/tasks', task, this.authHeader(this.jsonHeader()))
+    return this.http.post('/api/tasks', task.toObject(), this.authHeader(this.jsonHeader()))
       .map((res: Response) => {
         let body = res.json();
         if (body.success) {
@@ -161,9 +161,9 @@ export interface ITask {
   title: string;
   desc: string;
   color: string;
-  completed: boolean;
-  createdAt: string | Date;
-  updatedAt: string | Date;
+  completed?: boolean;
+  createdAt?: string | Date;
+  updatedAt?: string | Date;
 }
 
 export interface TaskUpdate {
@@ -177,7 +177,7 @@ export class Task implements ITask {
   title: string;
   desc: string;
   color: string;
-  completed: boolean;
+  completed: boolean = false;
   createdAt: Date;
   updatedAt: Date;
   
@@ -188,6 +188,10 @@ export class Task implements ITask {
   private _completed: boolean;
   
   constructor(task: ITask) {
+    this.setProps(task);
+  }
+  
+  private setProps(task: ITask) {
     if (task._id) {
       this.__id = task._id;
       
@@ -198,10 +202,16 @@ export class Task implements ITask {
     this._desc = task.desc;
     this.color = task.color;
     this._color = task.color;
-    this.completed = task.completed;
-    this._completed = task.completed;
-    this.createdAt = new Date(<string>task.createdAt);
-    this.updatedAt = new Date(<string>task.updatedAt);
+    if (task.completed) {
+      this.completed = task.completed;
+      this._completed = task.completed;
+    }
+    if (task.createdAt) {
+      this.createdAt = new Date(<string>task.createdAt);
+    }
+    if (task.updatedAt) {
+      this.updatedAt = new Date(<string>task.updatedAt);
+    }
   }
   
   get _id(): string {
@@ -237,7 +247,29 @@ export class Task implements ITask {
     if (this.completed !== this._completed) {
       up.completed = this.completed;
     }
+    console.log('task update:', up);
     return up;
+  }
+  
+  toObject(): ITask {
+    let task: ITask = {
+      title: this.title,
+      desc: this.desc,
+      color: this.color,
+      completed: this.completed
+    };
+    
+    if (this.__id) {
+      task._id = this.__id;
+    }
+    if (this.createdAt) {
+      task.createdAt = this.createdAt.toISOString();
+    }
+    if (this.updatedAt) {
+      task.updatedAt = this.createdAt.toISOString();
+    }
+    
+    return task;
   }
 }
 

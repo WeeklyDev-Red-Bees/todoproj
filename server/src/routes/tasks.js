@@ -47,6 +47,7 @@ export class TaskRoutes {
     });
     
     router.put('/:id', (req, res) => {
+      console.log('tasks put req:', req.body);
       Task.findById(req.params.id)
         .catch((err) => res.json({ success: false, err }))
         .then((_task) => {
@@ -63,10 +64,13 @@ export class TaskRoutes {
             _task.color = req.body.color;
             changed = true;
           }
-          if (req.body.completed) {
+          // if (req.body.completed) {
+          if ('completed' in req.body && req.body.hasOwnProperty('completed')) {
             _task.completed = req.body.completed;
             changed = true;
           }
+          console.log('changed?:', changed);
+          console.log('task:', _task);
           if (changed) {
             _task.save()
               .catch((err) => res.json({ success: false, err }))

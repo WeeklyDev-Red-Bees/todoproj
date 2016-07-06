@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, Directive, ElementRef, HostListener } from '@angular/core';
 import { MODAL_DIRECTIVES } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { AppService, Task, UserRes } from '../app.service';
+import { EditTaskService, ITaskEdit } from '../editTask';
 
 declare var jQuery: any;
 
@@ -13,7 +14,8 @@ export class TaskComponent {
   @Input('task') task: Task;
   @Input('idx') idx;
   // @Output() onClick = new EventEmitter();
-  appService: AppService
+  appService: AppService;
+  editTaskService: EditTaskService;
   
   // title: string = "";
   // desc: string = "";
@@ -37,15 +39,16 @@ export class TaskComponent {
   // };
   focused: boolean = false;
 
-  constructor(appService: AppService) {
+  constructor(appService: AppService, editTaskService: EditTaskService) {
     this.appService = appService;
+    this.editTaskService = editTaskService;
   }
   
   ngOnInit() {
     // this.title = this.task.title;
     // this.desc = this.task.desc;
-    this.descSelector = `#task-${this.idx} .desc`;
-    jQuery(this.descSelector).collapse({ toggle: false });
+    // this.descSelector = `#task-${this.idx} .desc`;
+    // jQuery(this.descSelector).collapse({ toggle: false });
   }
 
   checkClick() {
@@ -93,6 +96,20 @@ export class TaskComponent {
     });
   }
   
+  openEditTask(): void {
+    let task = this.task;
+    let uid: string = this.editTaskService.open(task);
+    console.log('uid:', uid);
+    this.editTaskService.listener.subscribe((taskEdit: ITaskEdit) => {
+      console.log('in edit cb');
+      console.log('taskEdit:', taskEdit);
+      if (taskEdit.uid === uid) {
+        console.log('yay');
+        this.task = taskEdit.task;
+        this.updateTask();
+      }
+    });
+  }
   // get title(): string {
   //   return this.task.title;
   // }
@@ -111,8 +128,8 @@ export class TaskComponent {
   
   extend(): void {
     // TODO: Extend collapsed .desc
-    console.log(jQuery(this.descSelector));
-    jQuery(this.descSelector).collapse('toggle');
-    this.extended = !this.extended;
+    // console.log(jQuery(this.descSelector));
+    // jQuery(this.descSelector).collapse('toggle');
+    // this.extended = !this.extended;
   }
 }

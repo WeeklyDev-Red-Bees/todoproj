@@ -1,0 +1,22 @@
+<modal [keyboard]="true" [backdrop]="true" (onClose)="onClose()" (onDismiss)="onDismiss()">
+  <modal-header [show-close]="true">
+    <h4 *ngIf="!task.isNew" class="modal-title">Edit Task</h4>
+    <h4 *ngIf="task.isNew" class="modal-title">New Task</h4>
+  </modal-header>
+  <modal-body>
+    <form>
+      <div class="form-group">
+        <label for="editTitle">Task Name</label>
+        <input [(ngModel)]="editTitle" name="editTitle" type="text" class="form-control" id="editTitle" placeholder="Buy milk">
+      </div>
+      <div class="form-group">
+        <label for="desc">Description</label>
+        <input [(ngModel)]="editDesc" name="editDesc" class="form-control" id="editDesc" placeholder="I have to buy milk before sunday.">
+      </div>
+    </form>
+  </modal-body>
+  <modal-footer>
+    <button type="button" class="btn cancel" data-dismiss="modal" (click)="modal.dismiss()">Cancel</button>
+    <button [disabled]="!canSubmit" type="button" class="btn submit" (click)="modal.close()">Save</button>
+  </modal-footer>
+</modal>
