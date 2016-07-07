@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SignupComponent } from '../signup';
 import { TaskComponent } from '../task';
-import { NewTaskComponent } from '../newTask';
-// import { UserService, User, TokenRes, UserRes } from '../user';
 import { AppService, User, TokenRes, UserRes, Task, ITask } from '../app.service';
 import { EditTaskService, EditTaskComponent, ITaskEdit } from '../editTask';
 
@@ -11,7 +9,7 @@ const uuid = require('node-uuid');
 
 @Component({
   selector: 'home',
-  directives: [SignupComponent, TaskComponent, NewTaskComponent, EditTaskComponent],
+  directives: [SignupComponent, TaskComponent, EditTaskComponent],
   // styles: [ require('./home.scss') ],
   template: require('./home.html')
 })

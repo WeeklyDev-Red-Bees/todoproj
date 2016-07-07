@@ -40,3 +40,4 @@ jspm_packages
 .DS_STORE
 bower_components
 dist
+server/config/default.json
