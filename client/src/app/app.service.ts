@@ -7,17 +7,11 @@ export class AppService {
   private http: Http;
   private _user: User;
   private _token: string;
-  // private _tasks: Task[];
   userEmitter: EventEmitter<User> = new EventEmitter<User>();
   tokenEmitter: EventEmitter<string> = new EventEmitter<string>();
-  // tasksEmitter: EventEmitter<Task[]> = new EventEmitter<Task[]>();
   
   constructor(http: Http) {
     this.http = http;
-    
-    // this.userEmitter.subscribe((user: User) => {
-    //   this.tasks = user.tasks;
-    // });
   }
   
   login(creds: Creds): Observable<TokenRes> {
@@ -71,8 +65,6 @@ export class AppService {
       return this.http.delete(`/api/tasks/${task._id}`, this.authHeader())
         .map((res: Response) => {
           let body = res.json();
-          // let taskIDx = this.tasks.findIndex((v: Task) => v._id === task._id);
-          // if (taskIDx !== -1) this.tasks.splice(taskIDx, 1);
           if (body.success) {
             this.user = new User(<IUser>body.user);
           }

@@ -5,11 +5,9 @@ import { User } from '../db';
 import { UserRoutes } from './users';
 import { TaskRoutes } from './tasks';
 
-// export function makeRoutes(passport) {
 export function makeRoutes() {
   let router = Router();
   
-  // let userRoutes = makeUserRoutes(passport);
   let userRoutes = new UserRoutes();
   let taskRoutes = new TaskRoutes();
   
