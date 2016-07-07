@@ -20,7 +20,7 @@ export function initializeServer() {
   // if (!config.has('secrets.session')) {
   //   throw new Error("Session secret not set in config file.");
   // }
-  if (!config.has('secrets.jwt')) {
+  if (!config.has('jwt')) {
     throw new Error("JWT secret not set in config file.");
   }
   

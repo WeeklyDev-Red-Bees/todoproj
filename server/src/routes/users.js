@@ -26,7 +26,7 @@ export class UserRoutes {
               res.json({ success: false, err: "EPASS" });
             } else {
               console.log('sending token');
-              let token = jwt.sign({ id: user._id }, config.get('secrets.jwt'), { expiresIn: '1 hour' });
+              let token = jwt.sign({ id: user._id }, config.get('jwt'), { expiresIn: '1 hour' });
               res.json({ success: true, token, user: user.toObject() });
             }
           } else {
@@ -53,7 +53,7 @@ export class UserRoutes {
               .catch((err) => res.json({ success: false, err }))
               .then((newUser) => {
                 // res.json({ success: true, user: newUser });
-                let token = jwt.sign({ id: newUser._id }, config.get('secrets.jwt'), { expiresIn: '1 hour' });
+                let token = jwt.sign({ id: newUser._id }, config.get('jwt'), { expiresIn: '1 hour' });
                 res.json({ success: true, token, user: newUser.toObject() });
               });
           }
