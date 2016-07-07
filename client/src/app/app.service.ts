@@ -33,6 +33,17 @@ export class AppService {
     this.user = null;
   }
   
+  getUser(): Observable<UserRes> {
+    return this.http.get('/api/users', this.authHeader())
+      .map((res: Response) => {
+        let body = res.json();
+        if (body.success) {
+          this.user = new User(<IUser>body.user);
+        }
+        return body;
+      });
+  }
+  
   addTask(task: Task): Observable<UserRes> {
     return this.http.post('/api/tasks', task.toObject(), this.authHeader(this.jsonHeader()))
       .map((res: Response) => {
@@ -123,6 +134,7 @@ export class AppService {
   set token(v: string) {
     console.log('setting token:', v);
     this._token = v;
+    localStorage.setItem('token', this._token);
     this.tokenEmitter.emit(this._token);
   }
   

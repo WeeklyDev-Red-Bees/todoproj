@@ -30,6 +30,18 @@ export class HomeComponent {
   }
   
   ngOnInit() {
+    let token: string = localStorage.getItem('token');
+    if (token) {
+      this.appService.token = token;
+      this.appService.getUser().subscribe((res: UserRes) => {
+        if (!res.success) {
+          let err = res.err;
+          if (err.name === "TokenExpiredError") {
+            console.log('token is expired.');
+          }
+        }
+      });
+    }
     let colors = [
       'red',
       'orange',
