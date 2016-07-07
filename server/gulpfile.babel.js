@@ -31,6 +31,12 @@ gulp.task('build:serverJS', ['lint:serverJS'], () => {
 });
 
 gulp.task('conf:check', (cb) => {
+	// var conf = require('./config/default.json');
+	try {
+		fs.accessSync('./config/default.json', fs.F_OK);
+	} catch (err) {
+		fs.writeFileSync('./config/default.json', JSON.stringify({}, null, 2));
+	}
 	var conf = require('./config/default.json');
 	var changed = false;
 	if (!conf.jwt) {
